@@ -20,9 +20,11 @@
 ├── skills.json          # 技能清单（formatVersion / name / version / skills[]）
 ├── categories.json      # 分类字典（dev / office / writing / research / design / data / ops / meta / imported）
 ├── skills/              # 扁平技能目录，目录名 = frontmatter name
+├── CHANGELOG.md         # 更新记录真源；docs/changelog.md 由它镜像生成
 ├── scripts/
 │   ├── validate.mjs     # 结构、命名、体积、scope、references、敏感信息与 catalog 一致性
-│   └── gen-catalog.mjs  # 从 skills.json 生成 catalog.md 与 docs/sidebar.json
+│   ├── gen-catalog.mjs  # 从 skills.json 生成 catalog.md 与 docs/sidebar.json
+│   └── check-changelog-doc.mjs # 本地 CHANGELOG 镜像检查（未装全局 toolkit 时跳过）
 ├── catalog.md           # 生成物，勿手改
 └── docs/sidebar.json    # 生成物，供文档站使用
 ```

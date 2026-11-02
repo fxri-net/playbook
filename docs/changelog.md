@@ -1,6 +1,8 @@
 # 更新记录
 
-本仓为私有技能内容仓，不发布 npm；版本与更新记录由 `.changeset/` 变更集手工归并到本页，变更集作为输入、不引入 changesets 运行时依赖。
+> 完整变更历史以根 `CHANGELOG.md` 为准，本页由 `toolkit changelog doc` 自动同步，请勿手改。
+
+本仓为私有技能内容仓，不发布 npm；版本记录由 `.changeset/` 变更集手工归并到本文件，变更集作为输入、不引入 changesets 运行时依赖。
 
 ## 0.1.0
 
