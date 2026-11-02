@@ -1,0 +1,27 @@
+stages:
+  - test
+  - pages
+
+default:
+  image: node:20
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@10.34.4 --activate
+    - pnpm install --frozen-lockfile
+
+test:
+  stage: test
+  script:
+    - node scripts/verify.mjs
+
+pages:
+  stage: pages
+  script:
+    - DOCS_BASE=/ pnpm docs:build
+    - rm -rf public
+    - mv docs/.vitepress/dist public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"

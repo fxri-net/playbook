@@ -3,7 +3,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import { dirname, join, relative, resolve, sep } from "node:path"
 import { fileURLToPath } from "node:url"
-import { buildCatalog, buildSidebar, loadManifest } from "./gen-catalog.mjs"
+import { buildCatalog, buildDocsCatalog, buildSidebar, buildSkillPages, loadManifest } from "./gen-catalog.mjs"
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const errors = []
@@ -186,11 +186,18 @@ for (const name of skillNames) visit(name)
 // catalog 与 sidebar 一致性
 if (manifest && categories) {
   const expectedCatalog = buildCatalog(manifest, categories)
+  const expectedDocsCatalog = buildDocsCatalog(manifest, categories)
   const expectedSidebar = `${JSON.stringify(buildSidebar(manifest, categories), null, 2)}\n`
   const catalogFile = join(root, "catalog.md")
+  const docsCatalogFile = join(root, "docs", "catalog.md")
   const sidebarFile = join(root, "docs", "sidebar.json")
   if (!existsSync(catalogFile) || readFileSync(catalogFile, "utf8") !== expectedCatalog) fail("catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
+  if (!existsSync(docsCatalogFile) || readFileSync(docsCatalogFile, "utf8") !== expectedDocsCatalog) fail("docs/catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
   if (!existsSync(sidebarFile) || readFileSync(sidebarFile, "utf8") !== expectedSidebar) fail("docs/sidebar.json", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
+  for (const [name, content] of buildSkillPages(manifest, root)) {
+    const file = join(root, "docs", "skills", `${name}.md`)
+    if (!existsSync(file) || readFileSync(file, "utf8") !== content) fail(`docs/skills/${name}.md`, "与 SKILL.md 不一致，请运行 node scripts/gen-catalog.mjs")
+  }
 }
 
 // 规范载体：v3 标记、C-1 / C-2 条目与演进记录

@@ -1,6 +1,17 @@
 # 方弦实践集（playbook）
 
+[![CI](https://github.com/fxri-net/playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/fxri-net/playbook/actions/workflows/ci.yml)
+[![GitLab CI](https://git.fxy.ink:444/fxri/develop/0001.base/playbook/badges/main/pipeline.svg)](https://git.fxy.ink:444/fxri/develop/0001.base/playbook)
+
 可被 AI agent 按需加载的通用技能内容仓。每个技能是一个独立目录，遵循 [Agent Skills 开放标准](https://agentskills.io)：`SKILL.md` 为入口，细节下沉 `references/`。
+
+## 远端
+
+- 主仓（GitLab）：`origin`
+- GitHub：`github`
+- Gitee：`gitee`（只读镜像，不接收 PR）
+
+推送与发布时三端同步；标签与 release 以主仓为准。
 
 ## 结构
 

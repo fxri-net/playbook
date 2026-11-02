@@ -20,8 +20,16 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "catalog": "node scripts/gen-catalog.mjs",
-    "catalog:check": "node scripts/gen-catalog.mjs --check"
+    "catalog:check": "node scripts/gen-catalog.mjs --check",
+    "verify": "node scripts/verify.mjs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  },
+  "packageManager": "pnpm@10.34.4",
   "keywords": [
     "agent-skills",
     "playbook",
