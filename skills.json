@@ -1,0 +1,47 @@
+{
+  "formatVersion": 1,
+  "name": "playbook",
+  "version": "0.1.0",
+  "skills": [
+    {
+      "name": "fxri-dev-profile-web",
+      "path": "skills/fxri-dev-profile-web",
+      "category": "dev",
+      "type": "profile",
+      "title": "Web 前端开发规范",
+      "summary": "通用 Web 前端工程原则：语义化结构、可访问性、性能、安全与兼容基线。",
+      "version": "0.1.0",
+      "requires": []
+    },
+    {
+      "name": "fxri-dev-profile-vue",
+      "path": "skills/fxri-dev-profile-vue",
+      "category": "dev",
+      "type": "profile",
+      "title": "Vue 开发规范",
+      "summary": "Vue 3 组合式 API、组件边界、状态管理、路由与测试的通用实践。",
+      "version": "0.1.0",
+      "requires": ["fxri-dev-profile-web"]
+    },
+    {
+      "name": "fxri-dev-profile-svc",
+      "path": "skills/fxri-dev-profile-svc",
+      "category": "dev",
+      "type": "profile",
+      "title": "服务端开发规范",
+      "summary": "服务端八条核心原则：契约、校验、幂等、事务、可观测、安全、故障隔离与文档。",
+      "version": "0.1.0",
+      "requires": []
+    },
+    {
+      "name": "fxri-meta-preset-tqy",
+      "path": "skills/fxri-meta-preset-tqy",
+      "category": "meta",
+      "type": "preset",
+      "title": "个人协作偏好（唐启云）",
+      "summary": "个人协作偏好：中文注释、先方案后动手、直奔主题、复用优先与文本编码纪律。",
+      "version": "0.1.0",
+      "requires": []
+    }
+  ]
+}

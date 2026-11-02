@@ -1,0 +1,30 @@
+{
+  "name": "@fxri/playbook",
+  "version": "0.1.0",
+  "private": true,
+  "description": "方弦实践集：可被 AI agent 按需加载的通用技能内容仓。",
+  "license": "MIT",
+  "author": {
+    "name": "唐启云",
+    "email": "tqy@fxri.net",
+    "url": "https://fxri.net:444/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fxri-net/playbook.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "catalog": "node scripts/gen-catalog.mjs",
+    "catalog:check": "node scripts/gen-catalog.mjs --check"
+  },
+  "keywords": [
+    "agent-skills",
+    "playbook",
+    "fxri"
+  ]
+}
