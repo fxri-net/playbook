@@ -19,16 +19,17 @@ export function loadManifest(rootDir = root) {
   return { manifest, categories }
 }
 
-// 按分类顺序分组技能；未识别分类追加到末尾
+// 按分类顺序分组技能；未识别分类归入 imported，不阻断第三方来源
 function groupByCategory(manifest, categories) {
   const order = categories.categories.map((category) => category.id)
   const groups = new Map(order.map((id) => [id, []]))
   for (const skill of manifest.skills) {
-    if (!groups.has(skill.category)) groups.set(skill.category, [])
-    groups.get(skill.category).push(skill)
+    const id = categories.categories.some((category) => category.id === skill.category) ? skill.category : "imported"
+    if (!groups.has(id)) groups.set(id, [])
+    groups.get(id).push(skill)
   }
   for (const skills of groups.values()) skills.sort((a, b) => a.name.localeCompare(b.name))
-  return { order: [...groups.keys()], groups, labelOf: new Map(categories.categories.map((category) => [category.id, category.label])) }
+  return { order: order.filter((id) => (groups.get(id) ?? []).length > 0), groups, labelOf: new Map(categories.categories.map((category) => [category.id, category.label])) }
 }
 
 // 生成 catalog.md 全文

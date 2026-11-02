@@ -29,7 +29,10 @@ export default defineConfig({
       },
       {
         text: "技能",
-        items: [{ text: "技能目录", link: "/catalog" }],
+        items: [
+          { text: "技能目录", link: "/catalog" },
+          { text: "分类说明", link: "/categories" },
+        ],
       },
       ...skillGroups,
       {

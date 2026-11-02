@@ -79,6 +79,13 @@ if (manifest) {
 
 const categoryIds = new Set((categories?.categories ?? []).map((category) => category.id))
 if (categoryIds.size === 0) fail("categories.json", "categories 须为非空数组")
+if (categoryIds.size !== (categories?.categories ?? []).length) fail("categories.json", "分类 id 重复")
+for (const category of categories?.categories ?? []) {
+  if (typeof category.id !== "string" || !KEBAB.test(category.id)) fail("categories.json", `分类 id 非法：${category.id}`)
+  if (typeof category.label !== "string" || category.label.trim() === "") fail("categories.json", `分类 ${category.id} 缺少 label`)
+  if (typeof category.description !== "string" || category.description.trim() === "") fail("categories.json", `分类 ${category.id} 缺少 description`)
+  if (category.status !== "active" && category.status !== "reserved") fail("categories.json", `分类 ${category.id} 的 status 须为 active / reserved`)
+}
 
 const skills = manifest?.skills ?? []
 const skillNames = new Set()
