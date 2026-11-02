@@ -1,4 +1,4 @@
-# 更新记录
+# 更新日志
 
 > 完整变更历史以根 `CHANGELOG.md` 为准，本页由 `toolkit changelog doc` 自动同步，请勿手改。
 

@@ -21,7 +21,7 @@
 ├── skills.json          # 技能清单（formatVersion / name / version / skills[]）
 ├── categories.json      # 分类字典（dev / office / writing / research / design / data / ops / meta / imported）
 ├── skills/              # 扁平技能目录，目录名 = frontmatter name
-├── CHANGELOG.md         # 更新记录真源；docs/changelog.md 由它镜像生成
+├── CHANGELOG.md         # 更新日志真源；docs/changelog.md 由它镜像生成
 ├── scripts/
 │   ├── validate.mjs     # 结构校验、技能标识、版本递增与变更集门禁
 │   ├── gen-catalog.mjs  # 从 skills.json 生成 catalog.md 与 docs/sidebar.json
