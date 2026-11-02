@@ -1,0 +1,55 @@
+---
+name: fxri-dev-profile-php
+description: PHP 开发规范：strict types、PSR 标准、Composer、PHP 8.x 兼容、依赖补丁与框架通用约定。适用于编写或评审 PHP 代码、升级 PHP 版本、处理 Composer 依赖与框架约定时使用——含「PHP 规范」「Composer」「PSR」「strict_types」「Laravel / ThinkPHP 约定」等说法及近义表达。不用于通用后端原则（见 fxri-dev-profile-svc）、其他语言实现或服务器运维。
+license: MIT
+metadata:
+  version: "0.1.0"
+  tier: optional
+  scope: [php]
+  triggers: ["PHP 开发", "Composer 依赖", "PSR 规范", "strict_types", "Laravel 约定", "ThinkPHP 约定"]
+  category: dev
+  type: profile
+  requires: ["fxri-dev-profile-svc"]
+  author: fxri
+  source: https://github.com/fxri-net/playbook
+---
+
+# PHP 开发规范
+
+> 本技能版本 0.1.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+
+## 何时使用
+
+- 编写或评审 PHP 代码、升级 PHP 版本
+- 处理 Composer 依赖、自动加载与第三方补丁
+- 统一 Laravel / ThinkPHP 等框架的通用约定
+
+前置：接口契约、校验、幂等、事务、可观测性与安全等通用原则见 `fxri-dev-profile-svc`。不用于其他语言或服务器运维。
+
+## 核心原则
+
+1. **严格类型**：新文件声明 `declare(strict_types=1);`；参数、返回值与属性尽量写类型。
+2. **PSR 基线**：命名空间与目录遵循 PSR-4，代码风格遵循 PSR-12；不另起一套风格。
+3. **依赖可复现**：提交 `composer.lock`；升级依赖先看变更日志与破坏性变更，再小步升级。
+4. **版本兼容**：按项目声明的最低 PHP 版本写代码；不凭本机高版本使用未声明的新语法。
+5. **不手改 vendor**：需要补丁时用 Composer patches / fork，并记录来源与移除条件。
+6. **错误显式**：异常带上下文；不吞异常、不用 `@` 抑制错误；对外错误与内部日志分开。
+7. **框架约定优先**：Laravel / ThinkPHP 项目沿用其目录、容器、验证与迁移约定，不混用两套模式。
+
+## 工作流程
+
+1. 确认最低 PHP 版本、框架版本与 PSR 约定。
+2. 先定接口与异常，再写实现与测试。
+3. 依赖变更单独提交，附升级原因与验证结果。
+4. 提交前跑静态分析与项目测试。
+
+## 检查清单
+
+- [ ] 新文件声明 `strict_types=1`
+- [ ] 命名空间与目录符合 PSR-4，风格符合 PSR-12
+- [ ] `composer.lock` 已提交，依赖变更单独提交
+- [ ] 未使用高于最低 PHP 版本的语法
+- [ ] vendor 未被手改，补丁有来源与移除条件
+- [ ] 异常未被吞掉，日志不含敏感字段
+
+详细判据与反例见 `references/php-principles.md`。

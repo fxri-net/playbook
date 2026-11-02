@@ -10,7 +10,7 @@
 
 ## `requires` 会自动安装吗？
 
-不会。`requires` 是文档与校验用的依赖声明；安装时按依赖顺序显式选择，例如先 web 再 vue。
+会。安装时按 `metadata.requires` 递归补全依赖；缺失依赖会告警并跳过，不阻断其他技能。例如选择 PHP profile 会自动带上服务端通用 profile。
 
 ## 能用上游安装器吗？
 

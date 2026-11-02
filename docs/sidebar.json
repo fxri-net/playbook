@@ -4,6 +4,14 @@
     "collapsed": false,
     "items": [
       {
+        "text": "Java 开发规范",
+        "link": "/skills/fxri-dev-profile-java/"
+      },
+      {
+        "text": "PHP 开发规范",
+        "link": "/skills/fxri-dev-profile-php/"
+      },
+      {
         "text": "服务端开发规范",
         "link": "/skills/fxri-dev-profile-svc/"
       },

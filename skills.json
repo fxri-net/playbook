@@ -34,6 +34,26 @@
       "requires": []
     },
     {
+      "name": "fxri-dev-profile-java",
+      "path": "skills/fxri-dev-profile-java",
+      "category": "dev",
+      "type": "profile",
+      "title": "Java 开发规范",
+      "summary": "Java / Spring 通用约定：构建依赖、分层、JPA 事务、Feign 超时、MQ 幂等与定时任务。",
+      "version": "0.1.0",
+      "requires": ["fxri-dev-profile-svc"]
+    },
+    {
+      "name": "fxri-dev-profile-php",
+      "path": "skills/fxri-dev-profile-php",
+      "category": "dev",
+      "type": "profile",
+      "title": "PHP 开发规范",
+      "summary": "PHP 通用约定：strict types、PSR、Composer、版本兼容、依赖补丁与框架约定。",
+      "version": "0.1.0",
+      "requires": ["fxri-dev-profile-svc"]
+    },
+    {
       "name": "fxri-meta-preset-tqy",
       "path": "skills/fxri-meta-preset-tqy",
       "category": "meta",
