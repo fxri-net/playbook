@@ -1,4 +1,4 @@
-# 方弦实践集（playbook）
+# 方弦实践集
 
 [![CI](https://github.com/fxri-net/playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/fxri-net/playbook/actions/workflows/ci.yml)
 [![GitLab CI](https://git.fxy.ink:444/fxri/develop/0001.base/playbook/badges/main/pipeline.svg)](https://git.fxy.ink:444/fxri/develop/0001.base/playbook)
