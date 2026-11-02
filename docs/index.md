@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: 方弦实践集
-  text: 可被 AI agent 按需加载的通用技能
-  tagline: 纯 Markdown 技能内容仓，按 profile / preset 组合，随取随用
+  text: 可被 AI 按需加载的通用技能
+  tagline: 从在建项目的规范载体中提炼，按档案与预设组合，交给 agent 随取随用
   actions:
     - theme: brand
       text: 快速开始
@@ -17,7 +17,7 @@ features:
   - title: 按需加载
     details: 每个技能独立目录，agent 只加载触发到的正文，不常驻上下文。
   - title: 组合而非重复
-    details: 通用原则落在 profile，语言与框架差异单独成技能，用 requires 组合。
+    details: 通用原则落在档案，语言与框架差异单独成技能，用 requires 组合。
   - title: 可校验
-    details: 结构、命名、体积、scope、references 与敏感信息都有脚本门禁。
+    details: 结构、命名、体积、技能标识、版本递增与变更集都有脚本门禁。
 ---
