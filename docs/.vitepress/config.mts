@@ -18,6 +18,8 @@ export default defineConfig({
       { text: "技能目录", link: "/catalog" },
       { text: "档案", link: "/profiles" },
       { text: "贡献", link: "/contributing" },
+      { text: "FAQ", link: "/faq" },
+      { text: "更新日志", link: "/changelog" },
     ],
     sidebar: [
       {
