@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # 变更集与技能版本门禁需要完整历史取 merge-base
+          fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
           version: 10.34.4

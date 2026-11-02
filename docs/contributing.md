@@ -14,6 +14,23 @@
 - 示例使用泛化命名（如 `src/cli.ts L103`），不出现外部仓库实名。
 - 版本递增：内容小修 +patch，新增能力 +minor。
 
+## 三方一致质量门
+
+技能、文档、清单或生成脚本的改动在归档前须完成三方复核：
+
+1. **能力**：`skills.json` ↔ `SKILL.md` frontmatter ↔ `references/` 一致；`package.json` 与 `skills.json` 版本一致。
+2. **文档**：手写页与 `README.md` 逐篇过触达面；生成物只核对镜像结果与源一致，不手改。
+3. **技能版本**：内容变更递增该技能版本，frontmatter 与正文首部版本行双写一致。
+4. **变更集**：触及 `skills/`、`docs/` 手写页、`skills.json`、`categories.json`、`scripts/gen-catalog.mjs` 时新增变更集，条目逐条写 `- 类型：描述`。
+
+本地与 CI 共用同一条验收命令：
+
+```bash
+node scripts/verify.mjs
+```
+
+门禁以 git 基准判断版本递增与变更集新增；无基准时打印跳过，不静默放行。
+
 ## 新增分类
 
 分类不是标签：只有同时满足以下条件才新增 category，否则用技能描述里的关键词表达：

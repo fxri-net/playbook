@@ -1,6 +1,7 @@
 // 结构校验：manifest / 命名 / 体积 / scope & triggers / references / 敏感信息 / catalog 一致性
 // 不与生成脚本复刻逻辑：catalog 期望值直接调用 gen-catalog 的 buildCatalog / buildSidebar
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
+import { execFileSync } from "node:child_process"
 import { dirname, join, relative, resolve, sep } from "node:path"
 import { fileURLToPath } from "node:url"
 import { buildCatalog, buildDocsCatalog, buildSidebar, buildSkillPages, loadManifest } from "./gen-catalog.mjs"
@@ -18,6 +19,65 @@ const KEBAB = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
 // 仓库相对路径统一为正斜杠，便于跨平台比对
 const rel = (p) => relative(root, p).split(sep).join("/")
+
+// git 只读调用：成功返回输出（可能为空串），失败返回 null，用于区分「空输出」与「执行失败」
+function git(args) {
+  try {
+    return execFileSync("git", args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim()
+  } catch {
+    return null
+  }
+}
+
+// 变更基准：显式 ref > GitHub 事件载荷 > GitLab MR diff 基准 > 目标分支 merge-base > 变更前提交 > 本地 HEAD~1；
+// 均不可得时返回 null，由调用方打印「跳过（无 git 基准）」而非静默放行
+function resolveBaseline() {
+  const explicit = process.env.CHANGESET_BASE_REF
+  if (explicit) return git(["merge-base", explicit, "HEAD"]) ?? git(["rev-parse", explicit])
+  // GitHub PR / push 的精确基准在事件载荷里（checkout 需 fetch-depth: 0 才能命中提交）
+  const eventPath = process.env.GITHUB_EVENT_PATH
+  if (eventPath && existsSync(eventPath)) {
+    try {
+      const event = JSON.parse(readFileSync(eventPath, "utf8"))
+      const before = event?.before
+      const sha = event?.pull_request?.base?.sha || (before && !/^0+$/.test(before) ? before : "")
+      if (sha && git(["cat-file", "-e", `${sha}^{commit}`]) !== null) return sha
+    } catch {
+      // 事件载荷不可读时继续走其余基准
+    }
+  }
+  const mrBase = process.env.CI_MERGE_REQUEST_DIFF_BASE_SHA
+  if (mrBase && git(["cat-file", "-e", `${mrBase}^{commit}`]) !== null) return mrBase
+  // 目标分支 merge-base：优先远端跟踪分支，其次同名本地分支
+  const baseRef = process.env.GITHUB_BASE_REF || process.env.CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+  if (baseRef) {
+    for (const ref of [`origin/${baseRef}`, baseRef]) {
+      const merged = git(["merge-base", ref, "HEAD"])
+      if (merged) return merged
+    }
+  }
+  const before = process.env.CI_COMMIT_BEFORE_SHA
+  if (before && !/^0+$/.test(before) && git(["cat-file", "-e", `${before}^{commit}`]) !== null) return before
+  return git(["rev-parse", "HEAD~1"])
+}
+
+// 语义化版本比较：a 是否高于 b
+function semverGreater(a, b) {
+  const left = String(a).split(".").map(Number)
+  const right = String(b).split(".").map(Number)
+  for (let i = 0; i < 3; i++) {
+    if ((left[i] ?? 0) > (right[i] ?? 0)) return true
+    if ((left[i] ?? 0) < (right[i] ?? 0)) return false
+  }
+  return false
+}
+
+// 手写文档判定：docs 下排除生成物（changelog / catalog / 技能页）
+function isHandwrittenDoc(file) {
+  if (!file.startsWith("docs/") || !file.endsWith(".md")) return false
+  if (file === "docs/changelog.md" || file === "docs/catalog.md") return false
+  return !file.startsWith("docs/skills/")
+}
 
 // 读取 frontmatter 块（不含分隔线）
 function frontmatterOf(content) {
@@ -75,6 +135,13 @@ if (manifest) {
   if (typeof manifest.name !== "string" || manifest.name.trim() === "") fail("skills.json", "name 须为非空字符串")
   if (!SEMVER.test(String(manifest.version))) fail("skills.json", `version 非法：${manifest.version}`)
   if (!Array.isArray(manifest.skills) || manifest.skills.length === 0) fail("skills.json", "skills 须为非空数组")
+  // 仓库版本双处声明须一致，避免发版只改一处
+  try {
+    const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"))
+    if (pkg.version !== manifest.version) fail("package.json", `version 与 skills.json 不一致：${pkg.version} / ${manifest.version}`)
+  } catch (e) {
+    fail("package.json", `读取失败：${e.message}`)
+  }
 }
 
 const categoryIds = new Set((categories?.categories ?? []).map((category) => category.id))
@@ -232,6 +299,77 @@ for (const file of ["README.md", "CONTRIBUTING.md", "catalog.md"]) {
   if (!existsSync(join(root, file))) continue
   const content = readFileSync(join(root, file), "utf8")
   for (const pattern of SENSITIVE) if (pattern.re.test(content)) fail(file, `疑似包含${pattern.label}`)
+}
+
+// 手写文档中的 fxri-* 标识须在 manifest 登记：排除 GitHub 组织名（fxri-net/…），
+// 生成物（changelog / catalog / 技能页）由 catalog 一致性校验覆盖，不在此重复扫描
+const handwrittenDocs = []
+function collectHandwrittenDocs(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) collectHandwrittenDocs(full)
+    else if (isHandwrittenDoc(rel(full))) handwrittenDocs.push(full)
+  }
+}
+if (existsSync(join(root, "docs"))) collectHandwrittenDocs(join(root, "docs"))
+for (const file of ["README.md", "CONTRIBUTING.md"]) if (existsSync(join(root, file))) handwrittenDocs.push(join(root, file))
+for (const file of handwrittenDocs) {
+  const content = readFileSync(file, "utf8")
+  for (const matched of content.matchAll(/(?<![\w-])fxri-[a-z0-9]+(?:-[a-z0-9]+)+(?![\w/-])/g)) {
+    if (!skillNames.has(matched[0])) fail(rel(file), `引用了未在 skills.json 登记的技能：${matched[0]}`)
+  }
+}
+
+// 变更门禁：技能内容变更须升版本；触及技能 / 手写文档 / 清单 / 生成脚本须新增变更集
+const baseline = resolveBaseline()
+if (!baseline) {
+  console.log("变更集与技能版本校验：跳过（无 git 基准）")
+} else {
+  const changed = (git(["diff", "--name-only", baseline]) ?? "")
+    .split("\n")
+    .filter(Boolean)
+    .map((file) => file.split(sep).join("/"))
+  if (changed.length === 0) {
+    console.log("变更集与技能版本校验：无改动")
+  } else {
+    let baselineManifest = null
+    try {
+      baselineManifest = JSON.parse(git(["show", `${baseline}:skills.json`]) ?? "")
+    } catch {
+      // 基准里没有 skills.json（首个提交）时，全部技能按新增处理、豁免版本递增
+    }
+    const changedSkills = new Set(changed.map((file) => file.match(/^skills\/([^/]+)\//)?.[1]).filter(Boolean))
+    for (const name of changedSkills) {
+      const current = skills.find((skill) => skill.name === name)
+      const before = baselineManifest?.skills?.find((skill) => skill.name === name)
+      if (!current || !before) continue
+      if (!semverGreater(current.version, before.version)) {
+        fail(`skills.json#${name}`, `技能内容有变更但版本未递增：${before.version} → ${current.version}`)
+      }
+    }
+    const needsChangeset = changed.some(
+      (file) =>
+        file.startsWith("skills/") ||
+        file === "skills.json" ||
+        file === "categories.json" ||
+        file === "scripts/gen-catalog.mjs" ||
+        isHandwrittenDoc(file),
+    )
+    if (needsChangeset) {
+      const baselineFiles = new Set(
+        (git(["ls-tree", "--name-only", baseline, ".changeset/"]) ?? "")
+          .split("\n")
+          .filter(Boolean)
+          .map((file) => file.split("/").pop()),
+      )
+      const currentFiles = existsSync(join(root, ".changeset"))
+        ? readdirSync(join(root, ".changeset")).filter((name) => name.endsWith(".md") && name !== "README.md")
+        : []
+      if (!currentFiles.some((name) => !baselineFiles.has(name))) {
+        fail(".changeset", "本次改动触及技能 / 手写文档 / 清单 / 生成脚本，须新增变更集")
+      }
+    }
+  }
 }
 
 if (errors.length > 0) {

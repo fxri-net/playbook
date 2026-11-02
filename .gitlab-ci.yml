@@ -9,6 +9,10 @@ default:
     - corepack prepare pnpm@10.34.4 --activate
     - pnpm install --frozen-lockfile
 
+# 变更集与技能版本门禁需要完整历史取变更基准
+variables:
+  GIT_DEPTH: "0"
+
 test:
   stage: test
   script:

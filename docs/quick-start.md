@@ -20,10 +20,10 @@ pnpm dlx skills add fxri-net/playbook --global
 
 ## 选择技能
 
-安装时按 `tier` 与 `scope` 选择：
+本仓技能均为 `optional`，全部按需选择，不强制安装：
 
-- `core`：必装，不可取消
-- `optional`：按需选择
+- 用 `--skills` 指定单个或多个技能；
+- 不传 `--skills` 时按交互结果安装；需要零选择时用 `--mode package`。
 
 只想装某个 profile：
 

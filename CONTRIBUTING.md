@@ -15,6 +15,21 @@
 - 示例使用泛化命名（如 `src/cli.ts L103`），不出现外部仓库实名。
 - 版本递增：内容小修 +patch，新增能力 +minor。
 
+## 三方一致质量门
+
+任何技能、文档、清单或生成脚本的改动，归档前须完成：
+
+1. **能力**：`skills.json` ↔ `SKILL.md` frontmatter ↔ `references/` 一致；`package.json` 与 `skills.json` 的 `version` 一致。
+2. **文档**：`docs/` 手写页与 `README.md` 逐篇过触达面；生成物（`docs/changelog.md`、`docs/catalog.md`、`docs/skills/*.md`、`docs/sidebar.json`）只核对镜像结果与源一致。
+3. **技能版本**：技能内容变更须递增该技能版本，frontmatter `metadata.version` 与正文首部版本行双写一致。
+4. **变更集**：触及 `skills/`、`docs/` 手写页、`skills.json`、`categories.json`、`scripts/gen-catalog.mjs` 时，须在 `.changeset/` 新增变更集，条目逐条以 `- 类型：描述` 书写。
+
+门禁以 git 基准判断「是否新增变更集 / 技能版本是否递增」，无基准时打印跳过、不静默放行：
+
+```bash
+node scripts/verify.mjs
+```
+
 ## 提交
 
 提交信息遵循 `类型：描述` 全中文格式；一次提交只做一件事。
