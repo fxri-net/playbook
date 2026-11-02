@@ -65,7 +65,6 @@ export default defineConfig({
         text: "档案与说明",
         items: [
           { text: "档案总览", link: "/profiles" },
-          { text: "预设总览", link: "/presets" },
           { text: "隐私与安全", link: "/privacy" },
           { text: "更新日志", link: "/changelog" },
           { text: "贡献指南", link: "/contributing" },

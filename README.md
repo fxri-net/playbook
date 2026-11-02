@@ -53,10 +53,8 @@ pnpm dlx skills add fxri-net/playbook --global
 
 ## 首批技能
 
-- `fxri-dev-profile-web`：Web 前端通用原则（语义、可访问性、性能、安全、兼容）
-- `fxri-dev-profile-vue`：Vue 3 组合式 API、组件边界、状态与路由（requires web）
-- `fxri-dev-profile-svc`：服务端八条核心原则
-- `fxri-meta-preset-tqy`：个人协作偏好
+- `fxri-dev-profile-web`：前端通用规范（共享工具前缀、逐变量注释、函数排序、效果图识别）
+- `fxri-dev-profile-vue`：Vue 3 规范（格式化、状态三分类、Defines、SFC 顺序、注释语法；requires web）
 
 完整目录见 [catalog.md](./catalog.md)。
 

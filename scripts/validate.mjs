@@ -79,6 +79,14 @@ function isHandwrittenDoc(file) {
   return !file.startsWith("docs/skills/")
 }
 
+// 清单内容快照：剔除版本字段，用于区分「发版只升版本」与「真正的内容变更」
+function skillsJsonContent(value) {
+  const clone = JSON.parse(JSON.stringify(value ?? {}))
+  delete clone.version
+  for (const skill of clone.skills ?? []) delete skill.version
+  return clone
+}
+
 // 读取 frontmatter 块（不含分隔线）
 function frontmatterOf(content) {
   const matched = content.replace(/^\uFEFF/, "").match(/^---\r?\n([\s\S]*?)\r?\n---/)
@@ -347,14 +355,17 @@ if (!baseline) {
         fail(`skills.json#${name}`, `技能内容有变更但版本未递增：${before.version} → ${current.version}`)
       }
     }
-    const needsChangeset = changed.some(
-      (file) =>
+    // 发版只升版本（顶层与技能版本）时不触发变更集要求，否则发版提交会被自身门禁拦截
+    const versionOnly = baselineManifest && JSON.stringify(skillsJsonContent(manifest)) === JSON.stringify(skillsJsonContent(baselineManifest))
+    const needsChangeset = changed.some((file) => {
+      if (file === "skills.json") return !versionOnly
+      return (
         file.startsWith("skills/") ||
-        file === "skills.json" ||
         file === "categories.json" ||
         file === "scripts/gen-catalog.mjs" ||
-        isHandwrittenDoc(file),
-    )
+        isHandwrittenDoc(file)
+      )
+    })
     if (needsChangeset) {
       const baselineFiles = new Set(
         (git(["ls-tree", "--name-only", baseline, ".changeset/"]) ?? "")

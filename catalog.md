@@ -6,14 +6,5 @@
 
 | 技能 | 类型 | 说明 |
 | --- | --- | --- |
-| `fxri-dev-profile-java` | profile | Java / Spring 通用约定：构建依赖、分层、JPA 事务、Feign 超时、MQ 幂等与定时任务。 |
-| `fxri-dev-profile-php` | profile | PHP 通用约定：strict types、PSR、Composer、版本兼容、依赖补丁与框架约定。 |
-| `fxri-dev-profile-svc` | profile | 服务端八条核心原则：契约、校验、幂等、事务、可观测、安全、故障隔离与文档。 |
-| `fxri-dev-profile-vue` | profile | Vue 3 组合式 API、组件边界、状态管理、路由与测试的通用实践。 |
-| `fxri-dev-profile-web` | profile | 通用 Web 前端工程原则：语义化结构、可访问性、性能、安全与兼容基线。 |
-
-## 元技能
-
-| 技能 | 类型 | 说明 |
-| --- | --- | --- |
-| `fxri-meta-preset-tqy` | preset | 个人协作偏好：中文注释、先方案后动手、直奔主题、复用优先与文本编码纪律。 |
+| `fxri-dev-profile-vue` | profile | Vue 3 前端规范：格式化、状态三分类、Defines + AxiosParse、文件与 SFC 顺序、@file / 固定注释 / JSDoc。 |
+| `fxri-dev-profile-web` | profile | 与语言、框架、语法无关的前端通用约定：共享工具前缀、逐变量注释、注释讲为什么、用词统一、函数名排序与效果图识别。 |

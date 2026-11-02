@@ -4,34 +4,12 @@
     "collapsed": false,
     "items": [
       {
-        "text": "Java 开发规范",
-        "link": "/skills/fxri-dev-profile-java/"
-      },
-      {
-        "text": "PHP 开发规范",
-        "link": "/skills/fxri-dev-profile-php/"
-      },
-      {
-        "text": "服务端开发规范",
-        "link": "/skills/fxri-dev-profile-svc/"
-      },
-      {
-        "text": "Vue 开发规范",
+        "text": "Vue 前端规范",
         "link": "/skills/fxri-dev-profile-vue/"
       },
       {
-        "text": "Web 前端开发规范",
+        "text": "前端通用规范",
         "link": "/skills/fxri-dev-profile-web/"
-      }
-    ]
-  },
-  {
-    "text": "元技能",
-    "collapsed": false,
-    "items": [
-      {
-        "text": "个人协作偏好（唐启云）",
-        "link": "/skills/fxri-meta-preset-tqy/"
       }
     ]
   }
