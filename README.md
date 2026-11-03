@@ -1,33 +1,17 @@
 # 方弦实践集
 
 [![CI](https://github.com/fxri-net/playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/fxri-net/playbook/actions/workflows/ci.yml)
-[![GitLab CI](https://git.fxy.ink:444/fxri/develop/0001.base/playbook/badges/main/pipeline.svg)](https://git.fxy.ink:444/fxri/develop/0001.base/playbook)
 
-可被 AI agent 按需加载的通用技能内容仓。每个技能是一个独立目录，遵循 [Agent Skills 开放标准](https://agentskills.io)：`SKILL.md` 为入口，细节下沉 `references/`。
-
-## 远端
-
-- 主仓（GitLab）：`origin`
-- GitHub：`github`
-- Gitee：`gitee`（只读镜像，不接收 PR）
-
-推送与发布时三端同步；标签与 release 以主仓为准。
+面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载。每个技能是一个独立目录，遵循 [Agent Skills 开放标准](https://agentskills.io)：`SKILL.md` 为入口，细节下沉 `references/`。
 
 ## 结构
 
 ```
 .
-├── AGENTS.md            # 仓库级协作规则与三方一致质量门
-├── skills.json          # 技能清单（formatVersion / name / version / skills[]）
-├── categories.json      # 分类字典（dev / office / writing / research / design / data / ops / meta / imported）
-├── skills/              # 扁平技能目录，目录名 = frontmatter name
-├── CHANGELOG.md         # 更新日志真源；docs/changelog.md 由它镜像生成
-├── scripts/
-│   ├── validate.mjs     # 结构校验、技能标识、版本递增与变更集门禁
-│   ├── gen-catalog.mjs  # 从 skills.json 生成 catalog.md 与 docs/sidebar.json
-│   └── check-changelog-doc.mjs # 本地 CHANGELOG 镜像检查（未装全局 toolkit 时跳过）
-├── catalog.md           # 生成物，勿手改
-└── docs/sidebar.json    # 生成物，供文档站使用
+├── skills/          # 技能目录，目录名 = frontmatter name
+├── skills.json      # 技能清单
+├── categories.json  # 分类字典
+└── catalog.md       # 技能目录（生成物，勿手改）
 ```
 
 ## 安装
@@ -60,13 +44,20 @@ pnpm dlx skills add fxri-net/playbook --global
 
 ## 开发
 
-```bash
-node scripts/gen-catalog.mjs   # 更新 catalog.md 与 docs/sidebar.json
-node scripts/validate.mjs      # 校验
-```
+新增技能、校验、发版与门禁流程见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
-规模预算：`bundle` ≤ 800 字符、`template` ≤ 3000 字符、其余 ≤ 8000 字符；`SKILL.md` 行数 < 200。
+## 📄 版权信息
 
-## 许可
+作者：唐启云 <tqy@fxri.net>
 
-MIT，见 [LICENSE](./LICENSE)、[NOTICE](./NOTICE)、[TRADEMARK.md](./TRADEMARK.md)。
+出品：方弦研究所
+
+版权：Copyright © 2026 唐启云. All rights reserved.
+
+网站：[方弦研究信息网](https://fxri.net:444/)
+
+协议：[MIT License](./LICENSE)
+
+商标："方弦®"为第42类注册商标（注册号89648411），本开源许可不授予商标使用权，详见 [TRADEMARK.md](./TRADEMARK.md)
+
+> 方弦研究所为唐启云个人项目品牌与出品方，非独立法人实体；本软件著作权归唐启云所有。

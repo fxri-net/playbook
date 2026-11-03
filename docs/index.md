@@ -1,12 +1,12 @@
 ---
 layout: home
 # 首页无正文 h1，显式给 title 避免浏览器标签出现「方弦实践集 - 方弦实践集」重复
-title: 可被 AI 按需加载的通用技能
+title: 把团队规范变成 AI 能直接执行的技能
 
 hero:
   name: 方弦实践集
-  text: 可被 AI 按需加载的通用技能
-  tagline: 从在建项目的规范载体中提炼，按档案与预设组合，交给 agent 随取随用
+  text: 把团队规范变成 AI 能直接执行的技能
+  tagline: 从项目实践中提炼约定，按档案与技能组合；写代码、审代码、出文档，都落在同一套标准上
   actions:
     - theme: brand
       text: 快速开始

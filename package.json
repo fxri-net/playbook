@@ -2,7 +2,7 @@
   "name": "@fxri/playbook",
   "version": "0.2.1",
   "private": true,
-  "description": "方弦实践集：可被 AI agent 按需加载的通用技能内容仓。",
+  "description": "面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载。",
   "license": "MIT",
   "author": {
     "name": "唐启云",
