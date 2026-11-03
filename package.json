@@ -1,6 +1,6 @@
 {
   "name": "@fxri/playbook",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载。",
   "license": "MIT",
