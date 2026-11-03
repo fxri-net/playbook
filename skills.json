@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "name": "playbook",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "skills": [
     {
       "name": "fxri-dev-profile-web",

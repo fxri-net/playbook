@@ -1,6 +1,6 @@
 {
   "name": "@fxri/playbook",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "private": true,
   "description": "面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载。",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "catalog:check": "node scripts/gen-catalog.mjs --check",
     "verify": "node scripts/verify.mjs",
     "changeset": "node scripts/toolkit.mjs changelog",
-    "version": "node scripts/toolkit.mjs changelog version",
+    "changelog:version": "node scripts/toolkit.mjs changelog version",
     "sync:changelog-doc": "node scripts/toolkit.mjs changelog --title 更新日志 --no-frontmatter doc",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
