@@ -376,7 +376,12 @@ if (!baseline) {
       const currentFiles = existsSync(join(root, ".changeset"))
         ? readdirSync(join(root, ".changeset")).filter((name) => name.endsWith(".md") && name !== "README.md")
         : []
-      if (!currentFiles.some((name) => !baselineFiles.has(name))) {
+      // 发版提交会在同一次推送内消费掉变更集，净差异看不到它，故区间内新增过即算数
+      const addedInRange = (git(["log", "--diff-filter=A", "--name-only", "--pretty=format:", `${baseline}..HEAD`, "--", ".changeset/"]) ?? "")
+        .split("\n")
+        .map((file) => file.trim())
+        .filter((file) => file.endsWith(".md") && file.split("/").pop() !== "README.md")
+      if (addedInRange.length === 0 && !currentFiles.some((name) => !baselineFiles.has(name))) {
         fail(".changeset", "本次改动触及技能 / 手写文档 / 清单 / 生成脚本，须新增变更集")
       }
     }
