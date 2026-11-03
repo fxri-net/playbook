@@ -21,7 +21,7 @@ test:
 pages:
   stage: pages
   script:
-    - DOCS_BASE=/ pnpm docs:build
+    - DOCS_BASE=/playbook/ pnpm docs:build
     - rm -rf public
     - mv docs/.vitepress/dist public
   artifacts:
