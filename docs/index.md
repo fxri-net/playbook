@@ -25,6 +25,15 @@ features:
   - icon: ✅
     title: 可校验
     details: 结构、命名、体积、技能标识、版本递增与变更集都有脚本门禁。
+  - icon: 🏷️
+    title: 版本可追溯
+    details: 每个技能在 frontmatter 与正文首部双写版本号，能力级变化由变更集记录。
+  - icon: 🗂️
+    title: 分类可扩展
+    details: categories.json 维护分类字典，新增语言或框架按分类落位，不挤进通用档案。
+  - icon: 🔗
+    title: 与 CLI 同源
+    details: 技能可独立使用，也可由 @fxri/toolkit 一键分发；真源随包分发，与 CLI 同一发布批次。
 ---
 
 ## 30 秒上手
