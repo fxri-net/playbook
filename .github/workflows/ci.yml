@@ -18,7 +18,7 @@ jobs:
           version: 10.34.4
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: node scripts/verify.mjs
@@ -41,7 +41,7 @@ jobs:
           version: 10.34.4
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm docs:build
