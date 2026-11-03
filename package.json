@@ -11,28 +11,37 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fxri-net/playbook.git"
+    "url": "git+https://github.com/fxri-net/playbook.git"
   },
+  "bugs": {
+    "url": "https://github.com/fxri-net/playbook/issues"
+  },
+  "homepage": "https://fxri-net.github.io/playbook/",
   "type": "module",
-  "engines": {
-    "node": ">=20.19.0"
-  },
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "catalog": "node scripts/gen-catalog.mjs",
     "catalog:check": "node scripts/gen-catalog.mjs --check",
     "verify": "node scripts/verify.mjs",
+    "changeset": "node scripts/toolkit.mjs changelog",
+    "version": "node scripts/toolkit.mjs changelog version",
+    "sync:changelog-doc": "node scripts/toolkit.mjs changelog --title 更新日志 --no-frontmatter doc",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
-  "devDependencies": {
-    "vitepress": "^1.6.4"
-  },
-  "packageManager": "pnpm@10.34.4",
   "keywords": [
     "agent-skills",
     "playbook",
+    "engineering-standards",
+    "skills",
     "fxri"
-  ]
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "packageManager": "pnpm@10.34.4",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
 }
