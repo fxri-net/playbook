@@ -81,8 +81,9 @@ function stripFrontmatter(content) {
 }
 
 // 生成单个技能页：标题与元信息取 manifest，正文取 SKILL.md，相对链接改写为仓库地址
+// 正文先归一换行：Windows 检出的 SKILL.md 是 CRLF，直接嵌入会让生成页混入 CRLF、与比对期望不一致
 export function buildSkillPage(skill, content) {
-  const body = stripFrontmatter(content).replace(/\]\(([^)]+)\)/g, (matched, target) => {
+  const body = stripFrontmatter(content).replace(/\r\n/g, "\n").replace(/\]\(([^)]+)\)/g, (matched, target) => {
     if (/^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith("#") || target.startsWith("/")) return matched
     return `](${REPO_URL}/blob/main/skills/${skill.name}/${target})`
   })

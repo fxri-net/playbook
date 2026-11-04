@@ -266,6 +266,10 @@ function visit(name, trail = []) {
 for (const name of skillNames) visit(name)
 
 // catalog 与 sidebar 一致性
+// 比对前归一换行：Windows 检出（core.autocrlf）会把生成物转成 CRLF，与生成脚本产出的 LF 逐字节比对会误报
+function readNormalized(file) {
+  return readFileSync(file, "utf8").replace(/^\uFEFF/, "").replace(/\r\n/g, "\n")
+}
 if (manifest && categories) {
   const expectedCatalog = buildCatalog(manifest, categories)
   const expectedDocsCatalog = buildDocsCatalog(manifest, categories)
@@ -273,12 +277,12 @@ if (manifest && categories) {
   const catalogFile = join(root, "catalog.md")
   const docsCatalogFile = join(root, "docs", "catalog.md")
   const sidebarFile = join(root, "docs", "sidebar.json")
-  if (!existsSync(catalogFile) || readFileSync(catalogFile, "utf8") !== expectedCatalog) fail("catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
-  if (!existsSync(docsCatalogFile) || readFileSync(docsCatalogFile, "utf8") !== expectedDocsCatalog) fail("docs/catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
-  if (!existsSync(sidebarFile) || readFileSync(sidebarFile, "utf8") !== expectedSidebar) fail("docs/sidebar.json", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
+  if (!existsSync(catalogFile) || readNormalized(catalogFile) !== expectedCatalog) fail("catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
+  if (!existsSync(docsCatalogFile) || readNormalized(docsCatalogFile) !== expectedDocsCatalog) fail("docs/catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
+  if (!existsSync(sidebarFile) || readNormalized(sidebarFile) !== expectedSidebar) fail("docs/sidebar.json", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
   for (const [name, content] of buildSkillPages(manifest, root)) {
     const file = join(root, "docs", "skills", `${name}.md`)
-    if (!existsSync(file) || readFileSync(file, "utf8") !== content) fail(`docs/skills/${name}.md`, "与 SKILL.md 不一致，请运行 node scripts/gen-catalog.mjs")
+    if (!existsSync(file) || readNormalized(file) !== content) fail(`docs/skills/${name}.md`, "与 SKILL.md 不一致，请运行 node scripts/gen-catalog.mjs")
   }
 }
 
