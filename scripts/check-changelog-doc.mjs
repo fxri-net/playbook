@@ -8,7 +8,7 @@ if (probe.status !== 0) {
   process.exit(0)
 }
 
-const result = spawnSync("toolkit", ["changelog", "--title", "更新日志", "--no-frontmatter", "--check", "doc"], {
+const result = spawnSync("toolkit", ["changelog", "--check", "doc"], {
   stdio: "inherit",
   shell: isWindows,
 })
