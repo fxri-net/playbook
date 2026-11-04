@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  # 手动触发：平台丢事件或需重跑时的手动入口；deploy job 的 if 已限定 push，手动触发只跑验收
+  workflow_dispatch:
 
 jobs:
   verify:
