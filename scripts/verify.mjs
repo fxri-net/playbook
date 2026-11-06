@@ -1,4 +1,4 @@
-// 聚合门禁：结构校验（含敏感扫描与 catalog 一致性）→ 文档站构建（含死链检查）
+// 聚合门禁：结构校验（含敏感扫描与 catalog 一致性）→ 文档站构建（含死链检查）→ 文档站产物（404 排除）
 // 本地与 CI 共用本脚本，不在 CI 配置里另写步骤枚举
 import { spawnSync } from "node:child_process"
 import { dirname } from "node:path"
@@ -15,6 +15,7 @@ const steps = [
   { label: "文档站主题一致（toolkit docs theme --check）", command: process.execPath, args: ["scripts/check-docs-theme.mjs"] },
   { label: "文档站导航规范（分类 / 命名 / 顶栏）", command: process.execPath, args: ["scripts/check-docs-nav.mjs"] },
   { label: "文档站构建（含死链检查）", command: "pnpm", args: ["docs:build"], shell: isWindows },
+  { label: "文档站产物（404 排除站点地图与搜索索引）", command: process.execPath, args: ["scripts/check-docs-dist.mjs"] },
 ]
 
 const failures = []
