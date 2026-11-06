@@ -38,5 +38,5 @@ node scripts/verify.mjs
 ## 更新日志
 
 - 根 `CHANGELOG.md` 为真源，`docs/changelog.md` 是生成物，不手改。
-- 修改 `CHANGELOG.md` 后执行 `toolkit changelog --title "更新日志" --no-frontmatter doc` 生成镜像，随同一次提交入库。
+- 修改 `CHANGELOG.md` 后执行 `pnpm sync:changelog-doc` 生成镜像，随同一次提交入库。
 - 本地门禁 `node scripts/verify.mjs` 会检查镜像一致；未安装全局 toolkit 时打印跳过，远程 CI 不依赖该工具。
