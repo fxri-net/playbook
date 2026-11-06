@@ -1,0 +1,6 @@
+---
+"@fxri/playbook": patch
+---
+
+- 新增：`fxri-docs-profile` 文档站导航规范档案，统一分类骨架、分组名上限、顶栏规范与导航校验口径
+- 修改：`writing` 分类转 active，档案页按「前端档案 / 文档档案」分节，README 能力矩阵与首批技能清单同步

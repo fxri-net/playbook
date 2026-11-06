@@ -12,5 +12,15 @@
         "link": "/skills/fxri-dev-profile-web/"
       }
     ]
+  },
+  {
+    "text": "写作",
+    "collapsed": false,
+    "items": [
+      {
+        "text": "文档站导航规范",
+        "link": "/skills/fxri-docs-profile/"
+      }
+    ]
   }
 ]

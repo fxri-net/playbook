@@ -11,7 +11,7 @@
 
 面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载。每个技能是一个独立目录，遵循 [Agent Skills 开放标准](https://agentskills.io)：`SKILL.md` 为入口，细节下沉 `references/`。
 
-> 定位：把散落在口头约定与历史项目里的工程经验，收敛成 agent 能直接执行的技能。通用原则落在档案，语言与框架差异单独成技能，用 `requires` 组合；按触发加载，不常驻上下文。
+> 定位：把散落在口头约定与历史项目里的工程经验，收敛成 agent 能直接执行的技能。通用原则落在档案，语言、框架与场景差异单独成技能，用 `requires` 组合；按触发加载，不常驻上下文。
 
 ## ✨ 能力矩阵
 
@@ -19,6 +19,7 @@
 | --- | --- | --- |
 | 前端通用规范 | 共享工具前缀、逐变量注释、注释讲为什么、函数名排序与效果图识别 | [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md) |
 | Vue 3 规范 | 格式化、状态三分类、Defines、SFC 顺序与注释语法；`requires` 通用规范 | [`fxri-dev-profile-vue`](./skills/fxri-dev-profile-vue/SKILL.md) |
+| 文档站导航规范 | 分类骨架、分组名上限、顶栏规范、扩展与校验规则 | [`fxri-docs-profile`](./skills/fxri-docs-profile/SKILL.md) |
 | 技能目录 | 按分类浏览全部技能与预留状态 | [`catalog.md`](./catalog.md) |
 | 结构门禁 | 结构、命名、体积、技能标识、版本递增与变更集校验 | `pnpm verify` |
 
@@ -61,6 +62,7 @@ pnpm dlx skills add fxri-net/playbook --global
 
 - [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md)：前端通用规范（共享工具前缀、逐变量注释、函数排序、效果图识别）
 - [`fxri-dev-profile-vue`](./skills/fxri-dev-profile-vue/SKILL.md)：Vue 3 规范（格式化、状态三分类、Defines、SFC 顺序、注释语法；`requires` 通用规范）
+- [`fxri-docs-profile`](./skills/fxri-docs-profile/SKILL.md)：文档站导航规范（分类骨架、命名上限、顶栏规范、扩展与校验规则）
 
 完整目录见 [catalog.md](./catalog.md)。
 

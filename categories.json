@@ -2,7 +2,7 @@
   "categories": [
     { "id": "dev", "label": "开发", "description": "前端、后端与工程化实践", "status": "active" },
     { "id": "office", "label": "办公", "description": "文档、表格与演示产物", "status": "reserved" },
-    { "id": "writing", "label": "写作", "description": "技术写作与内容表达", "status": "reserved" },
+    { "id": "writing", "label": "写作", "description": "技术写作与内容表达", "status": "active" },
     { "id": "research", "label": "研究", "description": "检索、分析与报告", "status": "reserved" },
     { "id": "design", "label": "设计", "description": "界面、交互与视觉规范", "status": "reserved" },
     { "id": "data", "label": "数据", "description": "数据处理、分析与可视化", "status": "reserved" },
