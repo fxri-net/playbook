@@ -41,17 +41,18 @@ export default defineConfig({
       { text: "快速开始", link: "/quick-start" },
       { text: "技能目录", link: "/catalog" },
       { text: "档案", link: "/profiles" },
-      { text: "贡献", link: "/contributing" },
-      { text: "FAQ", link: "/faq" },
-      { text: "更新日志", link: "/changelog" },
+      {
+        text: "帮助",
+        items: [
+          { text: "常见问题", link: "/faq" },
+          { text: "更新日志", link: "/changelog" },
+        ],
+      },
     ],
     sidebar: [
       {
         text: "开始",
-        items: [
-          { text: "快速开始", link: "/quick-start" },
-          { text: "常见问题", link: "/faq" },
-        ],
+        items: [{ text: "快速开始", link: "/quick-start" }],
       },
       {
         text: "技能",
@@ -62,12 +63,18 @@ export default defineConfig({
       },
       ...skillGroups,
       {
-        text: "档案与说明",
+        text: "档案",
         items: [
           { text: "档案总览", link: "/profiles" },
           { text: "隐私与安全", link: "/privacy" },
-          { text: "更新日志", link: "/changelog" },
           { text: "贡献指南", link: "/contributing" },
+        ],
+      },
+      {
+        text: "帮助",
+        items: [
+          { text: "常见问题", link: "/faq" },
+          { text: "更新日志", link: "/changelog" },
         ],
       },
     ],

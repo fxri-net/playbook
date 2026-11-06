@@ -13,6 +13,7 @@ const steps = [
   { label: "结构校验（含敏感扫描与 catalog 一致性）", command: process.execPath, args: ["scripts/validate.mjs"] },
   { label: "CHANGELOG 镜像一致（toolkit changelog doc --check）", command: process.execPath, args: ["scripts/check-changelog-doc.mjs"] },
   { label: "文档站主题一致（toolkit docs theme --check）", command: process.execPath, args: ["scripts/check-docs-theme.mjs"] },
+  { label: "文档站导航规范（分类 / 命名 / 顶栏）", command: process.execPath, args: ["scripts/check-docs-nav.mjs"] },
   { label: "文档站构建（含死链检查）", command: "pnpm", args: ["docs:build"], shell: isWindows },
 ]
 
