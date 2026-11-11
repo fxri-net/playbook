@@ -19,6 +19,7 @@
 | --- | --- | --- |
 | 前端通用规范 | 共享工具前缀、逐变量注释、注释讲为什么、函数名排序与效果图识别 | [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md) |
 | Vue 3 规范 | 格式化、状态三分类、Defines、SFC 顺序与注释语法；`requires` 通用规范 | [`fxri-dev-profile-vue`](./skills/fxri-dev-profile-vue/SKILL.md) |
+| 设计还原规范 | 素材分工与字段口径、标注直读、整图切片热区、内容文本可读下限、切片获取与可用态判定 | [`fxri-dev-profile-restore`](./skills/fxri-dev-profile-restore/SKILL.md) |
 | 文档站导航规范 | 分类骨架、分组名上限、顶栏规范、扩展与校验规则 | [`fxri-docs-profile`](./skills/fxri-docs-profile/SKILL.md) |
 | 技能目录 | 按分类浏览全部技能与预留状态 | [`catalog.md`](./catalog.md) |
 | 结构门禁 | 结构、命名、体积、技能标识、版本递增与变更集校验 | `pnpm verify` |

@@ -8,6 +8,7 @@ Profile 是工程与文档规范，按通用层、框架层与场景层拆分，
 | --- | --- | --- |
 | `fxri-dev-profile-web` | 与语言、框架、语法无关的通用约定：共享工具前缀、逐变量注释、函数排序、效果图识别 | 无 |
 | `fxri-dev-profile-vue` | Vue 3：格式化、状态三分类、Defines + AxiosParse、SFC 顺序、注释语法 | `fxri-dev-profile-web` |
+| `fxri-dev-profile-restore` | 按设计稿还原：素材与字段口径、标注直读、整图热区、可读下限、切片获取与可用态判定 | 无 |
 
 ## 文档档案
 

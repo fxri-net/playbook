@@ -32,6 +32,16 @@
       "summary": "文档站导航规范：分类骨架、分组名最多 4 汉字、顶栏不超过 5 项、常见问题与更新日志归帮助、导航校验按规则实现。",
       "version": "0.1.3",
       "requires": []
+    },
+    {
+      "name": "fxri-dev-profile-restore",
+      "path": "skills/fxri-dev-profile-restore",
+      "category": "dev",
+      "type": "profile",
+      "title": "设计还原规范",
+      "summary": "按设计稿还原界面的通用规范：素材分工与字段口径、标注直读与位图佐证、整图切片透明热区、内容文本可读下限、切片获取与平台可用态判定、固定视口实测。依赖项缺失时相关条目自动跳过。",
+      "version": "0.1.0",
+      "requires": []
     }
   ]
 }
