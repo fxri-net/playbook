@@ -17,7 +17,7 @@
 
 | 能力 | 用途 | 入口 |
 | --- | --- | --- |
-| 前端通用规范 | 共享工具前缀、逐变量注释、注释讲为什么、函数名排序与效果图识别 | [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md) |
+| 前端通用规范 | 共享工具前缀、逐变量注释、注释讲为什么、函数名排序、效果图识别，以及精度、取值、提示、布局与死代码等跨框架写法 | [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md) |
 | Vue 3 规范 | 格式化、状态三分类、Defines、SFC 顺序与注释语法；`requires` 通用规范 | [`fxri-dev-profile-vue`](./skills/fxri-dev-profile-vue/SKILL.md) |
 | 设计还原规范 | 素材分工与字段口径、标注直读、整图切片热区、内容文本可读下限、切片获取与可用态判定 | [`fxri-dev-profile-restore`](./skills/fxri-dev-profile-restore/SKILL.md) |
 | 接口契约与数据展示规范 | 码值映射可读文本、字典选项来源、契约落差确认、响应信封以运行时为准 | [`fxri-dev-profile-display`](./skills/fxri-dev-profile-display/SKILL.md) |
