@@ -52,6 +52,16 @@
       "summary": "接口契约与数据展示规范：码值映射可读文本、字典型选项取后端字典来源、契约落差先确认口径、运行期不符契约不自行适配、响应信封以运行时为准。依赖项缺失时相关条目自动跳过。",
       "version": "0.1.0",
       "requires": []
+    },
+    {
+      "name": "fxri-dev-profile-build",
+      "path": "skills/fxri-dev-profile-build",
+      "category": "dev",
+      "type": "profile",
+      "title": "构建与质量规范",
+      "summary": "构建与质量规范：告警按来源归属治理、barrel 成员不得回引自身、质量门零告警阻断、接口契约生成优先且生成物不手改。依赖项缺失时相关条目自动跳过。",
+      "version": "0.1.0",
+      "requires": []
     }
   ]
 }
