@@ -19,8 +19,8 @@
       "category": "dev",
       "type": "profile",
       "title": "Vue 前端规范",
-      "summary": "Vue 3 前端规范：格式化、状态三分类、Defines + AxiosParse、文件与 SFC 顺序、@file / 固定注释 / JSDoc。",
-      "version": "0.2.0",
+      "summary": "Vue 3 前端规范：格式化、状态三分类、Defines + AxiosParse、文件与 SFC 顺序、@file / 固定注释 / JSDoc，以及组件 ref 片段感知、defineExpose 用 getter、数据源驱动容器与表单状态机。",
+      "version": "0.3.0",
       "requires": ["fxri-dev-profile-web"]
     },
     {

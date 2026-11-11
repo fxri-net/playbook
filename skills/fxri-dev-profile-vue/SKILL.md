@@ -1,12 +1,12 @@
 ---
 name: fxri-dev-profile-vue
-description: Vue 3 前端规范：按项目 .prettierrc 格式化且不硬编码引号/分号/行宽；状态三分类（enums / datas 用 reactive，elems 用普通对象）；Defines + AxiosParse；工具 / 服务文件、SFC 三块与 script setup 内部顺序；固定前置注释、@file 与 JSDoc。适用于编写或评审 Vue 组件、组织脚本结构、按设计稿实现页面；共享工具前缀、逐变量注释、函数排序与效果图识别见 fxri-dev-profile-web。
+description: Vue 3 前端规范：按项目 .prettierrc 格式化且不硬编码引号/分号/行宽；状态三分类（enums / datas 用 reactive，elems 用普通对象）；Defines + AxiosParse；工具 / 服务文件、SFC 三块与 script setup 内部顺序；固定前置注释、@file 与 JSDoc；组件 ref 片段感知、defineExpose 用 getter、数据源驱动容器须传数据源、表单与状态机写法。适用于编写或评审 Vue 组件、组织脚本结构、按设计稿实现页面；共享工具前缀、逐变量注释、函数排序与效果图识别见 fxri-dev-profile-web。
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   tier: optional
   scope: [vue]
-  triggers: ["Vue 规范", "状态三分类", "enums datas elems", "Defines", "AxiosParse", "SFC 顺序", "script setup 顺序", "固定前置注释", "JSDoc", "prettier 格式化"]
+  triggers: ["Vue 规范", "状态三分类", "enums datas elems", "Defines", "AxiosParse", "SFC 顺序", "script setup 顺序", "固定前置注释", "JSDoc", "prettier 格式化", "组件 ref", "defineExpose", "列表容器数据源", "表单状态机"]
   category: dev
   type: profile
   requires: ["fxri-dev-profile-web"]
@@ -16,15 +16,17 @@ metadata:
 
 # Vue 前端规范
 
-> 本技能版本 0.2.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.3.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
 - 编写或评审 Vue 组件、组织 `<script setup>` 结构
 - 处理状态三分类、Defines、AxiosParse 与接口类型
 - 统一 SFC、工具文件、注释与 JSDoc 的具体写法
+- 处理组件 ref、对外暴露数据、数据源驱动容器与表单状态机
 
 通用规则（共享工具前缀、逐变量注释、行内讲为什么、用词统一、函数名排序、效果图识别）见 `fxri-dev-profile-web`，本技能不重复。
+第 6 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过；组件与工具形态见 [适配表](./references/adapters.md)。
 
 ## 规则
 
@@ -63,6 +65,29 @@ metadata:
 - **公共函数 JSDoc**：`/** 描述 @param … @return … @example */`；函数参数按实际顺序；函数名排序按 `fxri-dev-profile-web` 的约定。
 - **行内注释与用词**：讲「为什么」、用词统一等通用要求见 `fxri-dev-profile-web`。
 
+### 6. 组件 ref 片段感知
+
+- **适用前提**：需要通过组件 ref 做 DOM 查询。
+- **要求**：组件 ref 拿到的根节点不保证是元素——开发模式会保留模板首行注释，使组件根退化为片段，ref 落在首个文本或注释节点上。查询前先判断是否为元素节点，否则取相邻的下一个元素节点再查询；判定以元素落点为准，不绑定具体组件。
+- **反例**：直接对 ref 调查询方法，运行时抛「不是函数」而静默失效，不报构建错。
+
+### 7. 对外暴露响应式数据用 getter
+
+- **要求**：`defineExpose` 暴露响应式集合或对象时用 getter 返回，不在初始化期暴露当时引用；暴露的本身是 `ref` 时不受此限。
+- **反例**：暴露初始化期的快照值，父组件读到的恒为初始值（常见为空数组），且不报错、只静默失灵。
+
+### 8. 数据源驱动的容器须传数据源
+
+- **适用前提**：使用以 props 数据源驱动自动加载的列表容器组件。
+- **要求**：必须显式传数据源属性——漏传时组件不发起请求、列表恒空、控制台无报错；查询条件并入数据源闭包，不另传一份条件参数。
+- **项目无对应物**：项目无此类容器时用原生列表实现，加载与刷新入口显式化。
+- **反例**：承载列表时漏传数据源，页面表现为「接口有数据却不展示」；既传数据源又叠加传条件参数。
+
+### 9. 表单与状态机写法
+
+- **要求**：表单结构与同族详情页保持一致，字段名严格对齐提交契约；禁用与过期态统一递归设置，并隐藏提交入口、补状态说明；状态机页面用单个状态变量驱动模板分支与底部按钮；页面入口吸收路由参数，跨页透传条件时携带上一页条件。
+- **反例**：表单字段名与提交契约脱节；状态分散在多个变量里，模板分支与底部按钮态不同源。
+
 ## 检查清单
 
 - [ ] 格式化按项目 `.prettierrc`，未硬编码引号 / 分号 / 行宽
@@ -73,5 +98,9 @@ metadata:
 - [ ] `defineOptions` 与 `interface Defines` 固定注释齐全
 - [ ] 新文件未添加 `@file`，既有 `@file` 未改动
 - [ ] 公共函数 JSDoc 参数顺序与实际一致
+- [ ] 组件 ref 查询前已做片段感知
+- [ ] `defineExpose` 暴露响应式数据用 getter
+- [ ] 数据源驱动容器已显式传数据源
+- [ ] 表单字段对齐提交契约，状态机单变量驱动
 
-详细示例与反例见 `references/vue-principles.md`。
+详细示例与反例见 `references/vue-principles.md`，组件与工具形态见 `references/adapters.md`。
