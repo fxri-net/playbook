@@ -12,6 +12,8 @@ const fail = (file, message) => errors.push(`${file}: ${message}`)
 
 const REQUIRED_FILES = ["package.json", "README.md", "LICENSE", "NOTICE", "TRADEMARK.md", "SECURITY.md", "CONTRIBUTING.md", "skills.json", "categories.json"]
 const ALLOWED_TYPES = new Set(["bundle", "template", "profile", "preset", "guide"])
+// 新增技能名主题段禁用的领域大词：单个技能不得宣称整个领域
+const DOMAIN_WORDS = new Set(["ui", "data", "web", "app", "frontend", "engineering"])
 const TYPE_BUDGET = { bundle: 800, template: 3000 }
 const DEFAULT_BUDGET = 8000
 const SEMVER = /^\d+\.\d+\.\d+$/
@@ -349,6 +351,22 @@ if (!baseline) {
       baselineManifest = JSON.parse(git(["show", `${baseline}:skills.json`]) ?? "")
     } catch {
       // 基准里没有 skills.json（首个提交）时，全部技能按新增处理、豁免版本递增
+    }
+    // 命名门禁：新增技能须为 fxri-<分类>-<类型>-<主题>，主题段不占领域大词；存量旧名豁免
+    if (baselineManifest) {
+      const baselineNames = new Set((baselineManifest.skills ?? []).map((skill) => skill.name))
+      for (const skill of skills) {
+        if (baselineNames.has(skill.name)) continue
+        const segments = skill.name.split("-")
+        if (segments[0] !== "fxri" || segments.length < 4) {
+          fail(`skills.json#${skill.name}`, "新增技能名须为 fxri-<分类>-<类型>-<主题>")
+          continue
+        }
+        if (segments[1] !== skill.category) fail(`skills.json#${skill.name}`, `新增技能名分类段须等于 category：${skill.category}`)
+        if (!ALLOWED_TYPES.has(segments[2])) fail(`skills.json#${skill.name}`, `新增技能名类型段非法：${segments[2]}`)
+        const topic = segments.slice(3)
+        if (topic.some((word) => DOMAIN_WORDS.has(word))) fail(`skills.json#${skill.name}`, `新增技能名主题段不得含领域大词：${topic.join("-")}`)
+      }
     }
     const changedSkills = new Set(changed.map((file) => file.match(/^skills\/([^/]+)\//)?.[1]).filter(Boolean))
     for (const name of changedSkills) {

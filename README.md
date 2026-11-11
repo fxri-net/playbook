@@ -9,9 +9,9 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 [![文档站](https://img.shields.io/badge/docs-fxri--net.github.io%2Fplaybook-blueviolet)](https://fxri-net.github.io/playbook/)
 
-面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载。每个技能是一个独立目录，遵循 [Agent Skills 开放标准](https://agentskills.io)：`SKILL.md` 为入口，细节下沉 `references/`。
+面向 AI 协作的综合实践技能集：规范与流程沉淀为技能，按项目与语言组合，按需加载。每个技能是一个独立目录，遵循 [Agent Skills 开放标准](https://agentskills.io)：`SKILL.md` 为入口，细节下沉 `references/`。
 
-> 定位：把散落在口头约定与历史项目里的工程经验，收敛成 agent 能直接执行的技能。通用原则落在档案，语言、框架与场景差异单独成技能，用 `requires` 组合；按触发加载，不常驻上下文。
+> 定位：把散落在口头约定与历史项目里的实践经验，收敛成 agent 能直接执行的技能。通用原则落在档案，语言、框架与场景差异单独成技能，用 `requires` 组合；按触发加载，不常驻上下文。
 
 ## ✨ 能力矩阵
 

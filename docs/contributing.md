@@ -2,7 +2,7 @@
 
 ## 新增技能
 
-1. 在 `skills/` 下创建 `fxri-<分类>-<名称>/`，目录名与 frontmatter `name` 一致。
+1. 在 `skills/` 下创建 `fxri-<分类>-<类型>-<主题>/`，目录名与 frontmatter `name` 一致。分类段取 `categories.json` 的 `id`，类型段取 `bundle` / `template` / `profile` / `preset` / `guide`，主题段写具体能力、不得用 `ui` / `data` / `web` / `app` / `frontend` / `engineering` 等领域大词；归属按使用场景与交付物判定，不按被处理对象的领域。
 2. 补齐 frontmatter `metadata`：`version`、`tier`、`scope`、`triggers`、`category`、`type`、`requires`。
 3. 正文首部写 `> 本技能版本 x.y.z（随 playbook 技能集分发）。`，与 frontmatter 一致。
 4. 在 `skills.json` 登记条目；细节下沉 `references/`。
