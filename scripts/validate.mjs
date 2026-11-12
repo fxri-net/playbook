@@ -14,7 +14,9 @@ const REQUIRED_FILES = ["package.json", "README.md", "LICENSE", "NOTICE", "TRADE
 const ALLOWED_TYPES = new Set(["profile", "practice", "template"])
 // 主题段的空泛词：不能表达具体能力
 const EMPTY_TOPIC_WORDS = new Set(["tool", "tools", "skill", "skills", "general", "all", "misc"])
-const TYPE_BUDGET = { bundle: 800, template: 3000 }
+// scope 受控词表：技术面或技术栈，不接受自由取值
+const ALLOWED_SCOPES = new Set(["web", "vue", "h5", "pc", "app", "server", "docs", "any"])
+const TYPE_BUDGET = { template: 3000 }
 const DEFAULT_BUDGET = 8000
 const SEMVER = /^\d+\.\d+\.\d+$/
 const KEBAB = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
@@ -209,7 +211,11 @@ for (const skill of skills) {
   if (bodyVersion !== version) fail(label, `正文版本与 frontmatter 不一致：${bodyVersion || "未声明"} / ${version}`)
   const tier = metaField(fm, "tier")
   if (tier !== "core" && tier !== "optional") fail(label, `tier 须为 core / optional（实际：${tier || "未声明"}）`)
-  if (inlineArray(metaField(fm, "scope")).length === 0) fail(label, "scope 须为非空数组")
+  const scopes = inlineArray(metaField(fm, "scope"))
+  if (scopes.length === 0) fail(label, "scope 须为非空数组")
+  for (const scope of scopes) {
+    if (!ALLOWED_SCOPES.has(scope)) fail(label, `scope 取值非法：${scope}（合法值见 CONTRIBUTING.md）`)
+  }
   if (inlineArray(metaField(fm, "triggers")).length === 0) fail(label, "triggers 须为非空数组")
   if (metaField(fm, "category") !== skill.category) fail(label, "frontmatter category 与 manifest 不一致")
   if (metaField(fm, "type") !== skill.type) fail(label, "frontmatter type 与 manifest 不一致")
