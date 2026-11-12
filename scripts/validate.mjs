@@ -278,6 +278,7 @@ for (const skill of skills) {
   if (!ALLOWED_TYPES.has(shape)) fail(label, `技能名形态段非法：${shape}`)
   else if (shape !== skill.type) fail(label, `技能名形态段须等于 type：${skill.type}`)
   if (topic.length === 0) fail(label, "技能名缺少主题段")
+  if (topic.length > 2) fail(label, `技能名主题段最多 2 段，超出请拆技能：${topic.join("-")}`)
   if (topic.some((word) => word === domain || word === shape || EMPTY_TOPIC_WORDS.has(word))) {
     fail(label, `技能名主题段不得与领域段、形态段重复或使用空泛词：${topic.join("-")}`)
   }

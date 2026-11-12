@@ -2,7 +2,7 @@
 
 ## 新增技能
 
-1. 在 `skills/` 下创建 `fxri-<领域>-<形态>-<主题>/`，目录名与 frontmatter `name` 一致。领域段取 `categories.json` 的 `id`，形态段取 `profile`（规范）/ `practice`（流程）/ `template`（模板），主题段写具体能力、不得与领域段或形态段重复、不得用 `tool` / `skill` / `general` / `all` 等空泛词；归属按实践领域判定，不看职能、介质或来源。
+1. 在 `skills/` 下创建 `fxri-<领域>-<形态>-<主题>/`，目录名与 frontmatter `name` 一致。领域段取 `categories.json` 的 `id`，形态段取 `profile`（规范）/ `practice`（流程）/ `template`（模板），主题段写具体能力、1–2 段、不得与领域段或形态段重复、不得用 `tool` / `skill` / `general` / `all` 等空泛词；归属按实践领域判定，不看职能、介质或来源。
 2. 补齐 frontmatter `metadata`：`version`、`tier`、`scope`、`triggers`、`category`、`type`、`requires`。`scope` 取受控词表 `web` / `vue` / `h5` / `pc` / `app` / `server` / `docs` / `any`，越界会被结构校验拦下；`tier` 取 `core`（跨领域基础、建议常驻）或 `optional`（按需加载）。
 3. 正文首部写 `> 本技能版本 x.y.z（随 playbook 技能集分发）。`，与 frontmatter 一致。
 4. 在 `skills.json` 登记条目；细节下沉 `references/`。
