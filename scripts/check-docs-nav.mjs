@@ -1,4 +1,4 @@
-// 文档站导航规范校验：标准来源 playbook fxri-writing-profile-nav 0.1.4
+// 文档站导航规范校验（本仓自用实现，规则以技能 fxri-writing-profile-nav 条款为准）
 // 规则：顶栏不超过 5 项、首项快速开始、末项帮助、帮助含常见问题与更新日志、一级项与侧栏分组名不超过 4 个汉字、404 页存在且不进站点地图与站内搜索
 // 体量告警：单页超过 300 行（排除 changelog.md）只提示不阻断；产物断言见 check-docs-dist.mjs
 import { existsSync, readFileSync, readdirSync } from "node:fs"
