@@ -1,10 +1,11 @@
 // 结构校验：manifest / 命名 / 体积 / scope & triggers / references / 敏感信息 / catalog 一致性
-// 不与生成脚本复刻逻辑：catalog 期望值直接调用 gen-catalog 的 buildCatalog / buildSidebar
+// 不与生成脚本复刻逻辑：catalog 期望值直接调用 gen-catalog 的 buildCatalog / buildSiteNav
+// catalog 与导航数据一致性
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import { execFileSync } from "node:child_process"
 import { dirname, join, relative, resolve, sep } from "node:path"
 import { fileURLToPath } from "node:url"
-import { buildCatalog, buildDocsCatalog, buildSidebar, buildSkillPages, loadManifest } from "./gen-catalog.mjs"
+import { buildCatalog, buildDocsCatalog, buildSiteNav, buildSkillPages, loadManifest } from "./gen-catalog.mjs"
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const errors = []
@@ -314,7 +315,7 @@ function visit(name, trail = []) {
 }
 for (const name of skillNames) visit(name)
 
-// catalog 与 sidebar 一致性
+// catalog 与导航数据一致性
 // 比对前归一换行：Windows 检出（core.autocrlf）会把生成物转成 CRLF，与生成脚本产出的 LF 逐字节比对会误报
 function readNormalized(file) {
   return readFileSync(file, "utf8").replace(/^\uFEFF/, "").replace(/\r\n/g, "\n")
@@ -322,13 +323,13 @@ function readNormalized(file) {
 if (manifest && categories) {
   const expectedCatalog = buildCatalog(manifest, categories)
   const expectedDocsCatalog = buildDocsCatalog(manifest, categories)
-  const expectedSidebar = `${JSON.stringify(buildSidebar(manifest, categories), null, 2)}\n`
+  const expectedSiteNav = `${JSON.stringify(buildSiteNav(manifest, categories), null, 2)}\n`
   const catalogFile = join(root, "catalog.md")
   const docsCatalogFile = join(root, "docs", "catalog.md")
-  const sidebarFile = join(root, "docs", "sidebar.json")
+  const siteNavFile = join(root, "docs", "site-nav.json")
   if (!existsSync(catalogFile) || readNormalized(catalogFile) !== expectedCatalog) fail("catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
   if (!existsSync(docsCatalogFile) || readNormalized(docsCatalogFile) !== expectedDocsCatalog) fail("docs/catalog.md", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
-  if (!existsSync(sidebarFile) || readNormalized(sidebarFile) !== expectedSidebar) fail("docs/sidebar.json", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
+  if (!existsSync(siteNavFile) || readNormalized(siteNavFile) !== expectedSiteNav) fail("docs/site-nav.json", "与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
   for (const [name, content] of buildSkillPages(manifest, root)) {
     const file = join(root, "docs", "skills", `${name}.md`)
     if (!existsSync(file) || readNormalized(file) !== content) fail(`docs/skills/${name}.md`, "与 SKILL.md 不一致，请运行 node scripts/gen-catalog.mjs")

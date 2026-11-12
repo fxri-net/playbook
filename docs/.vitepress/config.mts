@@ -1,8 +1,7 @@
-import { readFileSync } from "node:fs"
 import { defineConfig } from "vitepress"
+import siteNav from "../site-nav.json"
 
-// 侧边栏由 scripts/gen-catalog.mjs 从 skills.json 生成，避免手工维护漂移
-const skillGroups = JSON.parse(readFileSync(new URL("../sidebar.json", import.meta.url), "utf8"))
+// 导航与侧栏由 scripts/gen-catalog.mjs 生成到 docs/site-nav.json（含技能分组），此处只做引用展开
 
 // 站点基础路径：GitHub Pages 项目站点默认 /playbook/；GitLab Pages 在 CI 中设 DOCS_BASE=/
 const base = process.env.DOCS_BASE ?? "/playbook/"
@@ -41,54 +40,8 @@ export default defineConfig({
   themeConfig: {
     // 导航栏 logo（字符串路径由 VitePress 自动拼接 base 前缀）
     logo: "/logo.png",
-    nav: [
-      { text: "快速开始", link: "/quick-start" },
-      { text: "技能目录", link: "/catalog" },
-      { text: "档案", link: "/profiles" },
-      {
-        text: "帮助",
-        items: [
-          { text: "常见问题", link: "/faq" },
-          { text: "更新日志", link: "/changelog" },
-        ],
-      },
-    ],
-    sidebar: [
-      {
-        text: "开始",
-        items: [{ text: "快速开始", link: "/quick-start" }],
-      },
-      {
-        text: "技能",
-        items: [
-          { text: "技能目录", link: "/catalog" },
-          { text: "分类说明", link: "/categories" },
-        ],
-      },
-      ...skillGroups,
-      {
-        text: "档案",
-        items: [
-          { text: "档案总览", link: "/profiles" },
-          { text: "隐私与安全", link: "/privacy" },
-          { text: "贡献指南", link: "/contributing" },
-        ],
-      },
-      {
-        text: "升级",
-        items: [
-          { text: "0.4.0 迁移", link: "/migrations/0.4.0" },
-          { text: "0.3.0 迁移", link: "/migrations/0.3.0" },
-        ],
-      },
-      {
-        text: "帮助",
-        items: [
-          { text: "常见问题", link: "/faq" },
-          { text: "更新日志", link: "/changelog" },
-        ],
-      },
-    ],
+    nav: siteNav.nav,
+    sidebar: siteNav.sidebar,
     // 本地搜索 + 中文界面文案
     search: {
       provider: "local",

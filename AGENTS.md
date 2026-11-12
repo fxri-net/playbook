@@ -9,7 +9,7 @@
 任何影响对外行为的变更——新增 / 修改 / 删除技能、技能正文与 references、manifest 字段、文档站手写页、生成脚本——在任务归档前必须完成三方复核，与 `toolkit tasks check` 同为不可绕过的质量门：
 
 1. **能力自身**：`skills.json` ↔ `SKILL.md` frontmatter ↔ `references/` 实际内容一致；`package.json` 与 `skills.json` 的 `version` 一致；`node scripts/validate.mjs` 通过。
-2. **文档**：`docs/` 手写页与根 `README.md` 逐篇过触达面；`docs/changelog.md`、`docs/catalog.md`、`docs/skills/*.md`、`docs/sidebar.json` 为生成物，只核对镜像结果与源一致，不手改。手写文档中出现的 `fxri-*` 技能标识必须在 `skills.json` 登记。
+2. **文档**：`docs/` 手写页与根 `README.md` 逐篇过触达面；`docs/changelog.md`、`docs/catalog.md`、`docs/skills/*.md`、`docs/site-nav.json` 为生成物，只核对镜像结果与源一致，不手改。手写文档中出现的 `fxri-*` 技能标识必须在 `skills.json` 登记。
 3. **技能版本**：技能内容变更须递增该技能 `version`，并同步 frontmatter `metadata.version` 与正文首部 `> 本技能版本 x.y.z`；小修 +patch，能力级 +minor。
 4. **变更集**：触及 `skills/`、`docs/` 手写页、`skills.json`、`categories.json`、`scripts/gen-catalog.mjs` 时，必须在 `.changeset/` 新增变更集，条目逐条以 `- 类型：描述` 书写。
 5. **git 基准**：上述检查以 `CHANGESET_BASE_REF` / CI 目标分支 / 变更前提交 / `HEAD~1` 为基准；无基准时打印「跳过（无 git 基准）」，不得静默跳过。

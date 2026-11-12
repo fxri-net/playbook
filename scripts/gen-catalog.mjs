@@ -67,6 +67,63 @@ export function buildSidebar(manifest, categories) {
   return sidebar
 }
 
+// 静态导航：技能分组不参与顶栏，固定四项 + 帮助
+const STATIC_NAV = [
+  { text: "快速开始", link: "/quick-start" },
+  { text: "技能目录", link: "/catalog" },
+  { text: "档案", link: "/profiles" },
+  {
+    text: "帮助",
+    items: [
+      { text: "常见问题", link: "/faq" },
+      { text: "更新日志", link: "/changelog" },
+    ],
+  },
+]
+
+// 侧栏头部：导航之外的固定分组，技能分组插在其后
+const SIDEBAR_HEAD = [
+  { text: "开始", items: [{ text: "快速开始", link: "/quick-start" }] },
+  {
+    text: "技能",
+    items: [
+      { text: "技能目录", link: "/catalog" },
+      { text: "分类说明", link: "/categories" },
+    ],
+  },
+]
+
+// 侧栏尾部：档案、升级与帮助
+const SIDEBAR_TAIL = [
+  {
+    text: "档案",
+    items: [
+      { text: "档案总览", link: "/profiles" },
+      { text: "隐私与安全", link: "/privacy" },
+      { text: "贡献指南", link: "/contributing" },
+    ],
+  },
+  {
+    text: "升级",
+    items: [
+      { text: "0.4.0 迁移", link: "/migrations/0.4.0" },
+      { text: "0.3.0 迁移", link: "/migrations/0.3.0" },
+    ],
+  },
+  {
+    text: "帮助",
+    items: [
+      { text: "常见问题", link: "/faq" },
+      { text: "更新日志", link: "/changelog" },
+    ],
+  },
+]
+
+// 生成文档站导航数据：静态部分 + 按分类生成的技能分组，供 config.mts 引用展开
+export function buildSiteNav(manifest, categories) {
+  return { nav: STATIC_NAV, sidebar: [...SIDEBAR_HEAD, ...buildSidebar(manifest, categories), ...SIDEBAR_TAIL] }
+}
+
 // 生成文档站目录页：与根 catalog 共用同一份正文，避免两处维护
 export function buildDocsCatalog(manifest, categories) {
   return `---\ntitle: 技能目录\n---\n\n${buildCatalog(manifest, categories)}`
@@ -95,19 +152,19 @@ export function buildSkillPages(manifest, rootDir = root) {
   return manifest.skills.map((skill) => [skill.name, buildSkillPage(skill, readFileSync(join(rootDir, "skills", skill.name, "SKILL.md"), "utf8"))])
 }
 
-// 写生成物：根目录页、文档站目录页、技能页与侧边栏
+// 写生成物：根目录页、文档站目录页、技能页与导航数据
 export function writeCatalog(rootDir = root) {
   const { manifest, categories } = loadManifest(rootDir)
   const catalog = buildCatalog(manifest, categories)
-  const sidebar = buildSidebar(manifest, categories)
+  const siteNav = buildSiteNav(manifest, categories)
   writeFileSync(join(rootDir, "catalog.md"), catalog, "utf8")
   const docsDir = join(rootDir, "docs")
   const skillsDir = join(docsDir, "skills")
   if (!existsSync(skillsDir)) mkdirSync(skillsDir, { recursive: true })
   writeFileSync(join(docsDir, "catalog.md"), buildDocsCatalog(manifest, categories), "utf8")
   for (const [name, content] of buildSkillPages(manifest, rootDir)) writeFileSync(join(skillsDir, `${name}.md`), content, "utf8")
-  writeFileSync(join(docsDir, "sidebar.json"), `${JSON.stringify(sidebar, null, 2)}\n`, "utf8")
-  return { catalog, sidebar }
+  writeFileSync(join(docsDir, "site-nav.json"), `${JSON.stringify(siteNav, null, 2)}\n`, "utf8")
+  return { catalog, siteNav }
 }
 
 // 直接执行：默认写入；--check 只比对不写
@@ -116,23 +173,23 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { manifest, categories } = loadManifest()
   const expectedCatalog = buildCatalog(manifest, categories)
   const expectedDocsCatalog = buildDocsCatalog(manifest, categories)
-  const expectedSidebar = `${JSON.stringify(buildSidebar(manifest, categories), null, 2)}\n`
+  const expectedSiteNav = `${JSON.stringify(buildSiteNav(manifest, categories), null, 2)}\n`
   const catalogFile = join(root, "catalog.md")
   const docsCatalogFile = join(root, "docs", "catalog.md")
-  const sidebarFile = join(root, "docs", "sidebar.json")
+  const siteNavFile = join(root, "docs", "site-nav.json")
   if (!check) {
     writeCatalog()
-    console.log("已生成 catalog.md、docs/catalog.md、技能页与 docs/sidebar.json")
+    console.log("已生成 catalog.md、docs/catalog.md、技能页与 docs/site-nav.json")
   } else {
     const actualCatalog = existsSync(catalogFile) ? readFileSync(catalogFile, "utf8") : ""
     const actualDocsCatalog = existsSync(docsCatalogFile) ? readFileSync(docsCatalogFile, "utf8") : ""
-    const actualSidebar = existsSync(sidebarFile) ? readFileSync(sidebarFile, "utf8") : ""
+    const actualSiteNav = existsSync(siteNavFile) ? readFileSync(siteNavFile, "utf8") : ""
     const pages = buildSkillPages(manifest)
     const pagesStale = pages.filter(([name, content]) => {
       const file = join(root, "docs", "skills", `${name}.md`)
       return !existsSync(file) || readFileSync(file, "utf8") !== content
     })
-    if (actualCatalog !== expectedCatalog || actualDocsCatalog !== expectedDocsCatalog || actualSidebar !== expectedSidebar || pagesStale.length > 0) {
+    if (actualCatalog !== expectedCatalog || actualDocsCatalog !== expectedDocsCatalog || actualSiteNav !== expectedSiteNav || pagesStale.length > 0) {
       console.error("catalog 生成物与 manifest 不一致，请运行 node scripts/gen-catalog.mjs")
       process.exit(1)
     }
