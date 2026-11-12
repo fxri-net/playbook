@@ -375,6 +375,8 @@ function collectHandwrittenDocs(dir) {
 if (existsSync(join(root, "docs"))) collectHandwrittenDocs(join(root, "docs"))
 for (const file of ["README.md", "CONTRIBUTING.md"]) if (existsSync(join(root, file))) handwrittenDocs.push(join(root, file))
 for (const file of handwrittenDocs) {
+  // 迁移说明按设计记录历史技能名，不要求已登记在 manifest
+  if (rel(file).replace(/\\/g, "/").startsWith("docs/migrations/")) continue
   const content = readFileSync(file, "utf8")
   for (const matched of content.matchAll(/(?<![\w-])fxri-[a-z0-9]+(?:-[a-z0-9]+)+(?![\w/-])/g)) {
     if (!skillNames.has(matched[0])) fail(rel(file), `引用了未在 skills.json 登记的技能：${matched[0]}`)

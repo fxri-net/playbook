@@ -16,6 +16,10 @@
 
 可以。`pnpm dlx skills add fxri-net/playbook --global`。不要与 `toolkit` 内置安装混用，避免同名产物互相判为冲突。
 
+## 技能改名了，按旧名找不到怎么办？
+
+看[迁移说明](./migrations/0.3.0)里的改名对照表与升级动作。
+
 ## 如何新增分类？
 
 见[贡献指南](./contributing#新增分类)。

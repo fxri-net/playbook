@@ -75,6 +75,10 @@ export default defineConfig({
         ],
       },
       {
+        text: "升级",
+        items: [{ text: "0.3.0 迁移", link: "/migrations/0.3.0" }],
+      },
+      {
         text: "帮助",
         items: [
           { text: "常见问题", link: "/faq" },
