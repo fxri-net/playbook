@@ -61,7 +61,7 @@ toolkit skills sources remove playbook --prune
 pnpm dlx skills add fxri-net/playbook --global
 ```
 
-## 🧩 首批技能
+## 🧩 技能一览
 
 - [`fxri-code-profile-web`](./skills/fxri-code-profile-web/SKILL.md)：前端通用规范（共享工具前缀、逐变量注释、函数排序、效果图识别）
 - [`fxri-code-profile-vue`](./skills/fxri-code-profile-vue/SKILL.md)：Vue 3 规范（格式化、状态三分类、Defines、SFC 顺序、注释语法；`requires` 通用规范）
