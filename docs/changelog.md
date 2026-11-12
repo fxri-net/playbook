@@ -6,6 +6,18 @@ outline: [2, 2]
 
 > 完整变更历史以根 `CHANGELOG.md` 为准，本页由 `toolkit changelog doc` 自动同步，请勿手改。
 
+## 0.4.0
+
+> 2026-11-13 发布
+
+### ✨ 新增功能
+
+- `docs/migrations/0.4.0.md` 说明条款变更与下游升级动作
+
+### 🔧 功能调整
+
+- `fxri-writing-profile-nav` 删除「脚本投影 / 首行标注版本 / 各仓副本同步」三条实现类条款，改为由 `toolkit docs nav check` 与 `docs dist check` 执行
+
 ## 0.3.0
 
 > 2026-11-12 发布
