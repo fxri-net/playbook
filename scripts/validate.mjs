@@ -11,12 +11,12 @@ const errors = []
 const fail = (file, message) => errors.push(`${file}: ${message}`)
 
 const REQUIRED_FILES = ["package.json", "README.md", "LICENSE", "NOTICE", "TRADEMARK.md", "SECURITY.md", "CONTRIBUTING.md", "skills.json", "categories.json"]
-const ALLOWED_TYPES = new Set(["profile", "practice", "template"])
-// 主题段的空泛词：不能表达具体能力
+// 主题段的空泛词：不能表达具体能力（校验细节，不是对外词表）
 const EMPTY_TOPIC_WORDS = new Set(["tool", "tools", "skill", "skills", "general", "all", "misc"])
-// scope 受控词表：技术面或技术栈，不接受自由取值
-const ALLOWED_SCOPES = new Set(["web", "vue", "h5", "pc", "app", "server", "docs", "any"])
-const TYPE_BUDGET = { template: 3000 }
+// 类型与适用面词表的真源在 categories.json，读取后派生，避免脚本与文档各写一份
+let ALLOWED_TYPES = new Set()
+let ALLOWED_SCOPES = new Set()
+let TYPE_BUDGET = {}
 const DEFAULT_BUDGET = 8000
 const SEMVER = /^\d+\.\d+\.\d+$/
 const KEBAB = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
@@ -163,6 +163,29 @@ for (const category of categories?.categories ?? []) {
   if (typeof category.id !== "string" || !KEBAB.test(category.id)) fail("categories.json", `分类 id 非法：${category.id}`)
   if (typeof category.label !== "string" || category.label.trim() === "") fail("categories.json", `分类 ${category.id} 缺少 label`)
   if (typeof category.description !== "string" || category.description.trim() === "") fail("categories.json", `分类 ${category.id} 缺少 description`)
+}
+
+// 从 categories.json 派生词表；缺字段即失败，避免脚本回退到隐藏默认值
+const typeEntries = categories?.types ?? []
+const scopeEntries = categories?.scopes ?? []
+if (typeEntries.length === 0) fail("categories.json", "types 须为非空数组")
+if (scopeEntries.length === 0) fail("categories.json", "scopes 须为非空数组")
+ALLOWED_TYPES = new Set(typeEntries.map((type) => type.id))
+ALLOWED_SCOPES = new Set(scopeEntries)
+TYPE_BUDGET = Object.fromEntries(typeEntries.filter((type) => typeof type.budget === "number").map((type) => [type.id, type.budget]))
+
+// 词表与文档一致性：取值变更时文档漏改即失败，避免「文档说能用、校验说不行」
+const TYPE_DOCS = ["CONTRIBUTING.md", join("docs", "contributing.md"), join("docs", "categories.md")]
+const SCOPE_DOCS = ["CONTRIBUTING.md", join("docs", "contributing.md")]
+for (const file of TYPE_DOCS) {
+  if (!existsSync(join(root, file))) continue
+  const content = readFileSync(join(root, file), "utf8")
+  for (const id of ALLOWED_TYPES) if (!content.includes(id)) fail(file, `未列出类型取值：${id}`)
+}
+for (const file of SCOPE_DOCS) {
+  if (!existsSync(join(root, file))) continue
+  const content = readFileSync(join(root, file), "utf8")
+  for (const id of ALLOWED_SCOPES) if (!content.includes(id)) fail(file, `未列出 scope 取值：${id}`)
 }
 
 const skills = manifest?.skills ?? []

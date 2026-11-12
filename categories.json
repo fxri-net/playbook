@@ -9,5 +9,11 @@
     { "id": "ops", "label": "运维", "description": "部署、发布与稳定性" },
     { "id": "life", "label": "生活", "description": "个人事务与日常安排" },
     { "id": "meta", "label": "元技能", "description": "技能、规则与协作机制" }
-  ]
+  ],
+  "types": [
+    { "id": "profile", "label": "规范" },
+    { "id": "practice", "label": "流程" },
+    { "id": "template", "label": "模板", "budget": 3000 }
+  ],
+  "scopes": ["web", "vue", "h5", "pc", "app", "server", "docs", "any"]
 }
