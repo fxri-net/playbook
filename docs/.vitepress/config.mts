@@ -17,7 +17,7 @@ export default defineConfig({
   lang: "zh-CN",
   title: "方弦实践集",
   titleTemplate: ":title - 方弦实践集",
-  description: "面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载",
+  description: "面向 AI 协作的综合实践技能集：规范与流程沉淀为技能，按项目与语言组合，按需加载",
   base,
   cleanUrls: true,
   lastUpdated: true,
@@ -26,7 +26,7 @@ export default defineConfig({
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:site_name", content: "方弦实践集" }],
     ["meta", { property: "og:title", content: "方弦实践集" }],
-    ["meta", { property: "og:description", content: "面向 AI 协作的工程规范集：规范沉淀为技能，按项目与语言组合，按需加载" }],
+    ["meta", { property: "og:description", content: "面向 AI 协作的综合实践技能集：规范与流程沉淀为技能，按项目与语言组合，按需加载" }],
     // og:image 必须为绝对地址，社交平台据此抓取分享卡片
     ["meta", { property: "og:image", content: `${siteUrl}og-image.png` }],
     ["meta", { property: "og:url", content: siteUrl }],
