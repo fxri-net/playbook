@@ -17,12 +17,12 @@
 
 | 能力 | 用途 | 入口 |
 | --- | --- | --- |
-| 前端通用规范 | 共享工具前缀、逐变量注释、注释讲为什么、函数名排序、效果图识别，以及精度、取值、提示、布局与死代码等跨框架写法 | [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md) |
-| Vue 3 规范 | 格式化、状态三分类、Defines、SFC 顺序与注释语法，以及 ref 片段感知、getter 暴露、数据源容器与表单状态机；`requires` 通用规范 | [`fxri-dev-profile-vue`](./skills/fxri-dev-profile-vue/SKILL.md) |
-| 设计还原规范 | 素材分工与字段口径、标注直读、整图切片热区、内容文本可读下限、切片获取与可用态判定 | [`fxri-dev-profile-restore`](./skills/fxri-dev-profile-restore/SKILL.md) |
-| 接口契约与数据展示规范 | 码值映射可读文本、字典选项来源、契约落差确认、响应信封以运行时为准 | [`fxri-dev-profile-display`](./skills/fxri-dev-profile-display/SKILL.md) |
-| 构建与质量规范 | 告警分源治理、barrel 断边、质量门零告警、契约生成优先 | [`fxri-dev-profile-build`](./skills/fxri-dev-profile-build/SKILL.md) |
-| 文档站导航规范 | 分类骨架、分组名上限、顶栏规范、扩展与校验规则 | [`fxri-docs-profile`](./skills/fxri-docs-profile/SKILL.md) |
+| 前端通用规范 | 共享工具前缀、逐变量注释、注释讲为什么、函数名排序、效果图识别，以及精度、取值、提示、布局与死代码等跨框架写法 | [`fxri-code-profile-web`](./skills/fxri-code-profile-web/SKILL.md) |
+| Vue 3 规范 | 格式化、状态三分类、Defines、SFC 顺序与注释语法，以及 ref 片段感知、getter 暴露、数据源容器与表单状态机；`requires` 通用规范 | [`fxri-code-profile-vue`](./skills/fxri-code-profile-vue/SKILL.md) |
+| 设计还原规范 | 素材分工与字段口径、标注直读、整图切片热区、内容文本可读下限、切片获取与可用态判定 | [`fxri-code-profile-restore`](./skills/fxri-code-profile-restore/SKILL.md) |
+| 接口契约与数据展示规范 | 码值映射可读文本、字典选项来源、契约落差确认、响应信封以运行时为准 | [`fxri-code-profile-display`](./skills/fxri-code-profile-display/SKILL.md) |
+| 构建与质量规范 | 告警分源治理、barrel 断边、质量门零告警、契约生成优先 | [`fxri-code-profile-build`](./skills/fxri-code-profile-build/SKILL.md) |
+| 文档站导航规范 | 分类骨架、分组名上限、顶栏规范、扩展与校验规则 | [`fxri-writing-profile-nav`](./skills/fxri-writing-profile-nav/SKILL.md) |
 | 技能目录 | 按分类浏览全部技能与预留状态 | [`catalog.md`](./catalog.md) |
 | 结构门禁 | 结构、命名、体积、技能标识、版本递增与变更集校验 | `pnpm verify` |
 
@@ -63,9 +63,9 @@ pnpm dlx skills add fxri-net/playbook --global
 
 ## 🧩 首批技能
 
-- [`fxri-dev-profile-web`](./skills/fxri-dev-profile-web/SKILL.md)：前端通用规范（共享工具前缀、逐变量注释、函数排序、效果图识别）
-- [`fxri-dev-profile-vue`](./skills/fxri-dev-profile-vue/SKILL.md)：Vue 3 规范（格式化、状态三分类、Defines、SFC 顺序、注释语法；`requires` 通用规范）
-- [`fxri-docs-profile`](./skills/fxri-docs-profile/SKILL.md)：文档站导航规范（分类骨架、命名上限、顶栏规范、扩展与校验规则）
+- [`fxri-code-profile-web`](./skills/fxri-code-profile-web/SKILL.md)：前端通用规范（共享工具前缀、逐变量注释、函数排序、效果图识别）
+- [`fxri-code-profile-vue`](./skills/fxri-code-profile-vue/SKILL.md)：Vue 3 规范（格式化、状态三分类、Defines、SFC 顺序、注释语法；`requires` 通用规范）
+- [`fxri-writing-profile-nav`](./skills/fxri-writing-profile-nav/SKILL.md)：文档站导航规范（分类骨架、命名上限、顶栏规范、扩展与校验规则）
 
 完整目录见 [catalog.md](./catalog.md)。
 

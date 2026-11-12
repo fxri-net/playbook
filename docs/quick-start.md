@@ -28,7 +28,7 @@ pnpm dlx skills add fxri-net/playbook --global
 只想装某个 profile：
 
 ```bash
-toolkit skills install --from ./playbook --skills fxri-dev-profile-web --agent canonical
+toolkit skills install --from ./playbook --skills fxri-code-profile-web --agent canonical
 ```
 
 ## 更新与清理

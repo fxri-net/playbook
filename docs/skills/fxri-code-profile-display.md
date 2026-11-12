@@ -1,22 +1,14 @@
 ---
-name: fxri-dev-profile-display
-description: 接口契约与数据展示规范：枚举与字典码值须映射为可读文本再展示；字典型选项取后端字典来源；契约与需求不一致时先确认口径；运行期与契约不符时不自行适配；响应信封以运行时结构为准。适用于任何需要把接口数据呈现到界面的前端工程；具体映射表位置与字典接口形态见 references，依赖项缺失时相关条目自动跳过。
-license: MIT
-metadata:
-  version: "0.1.0"
-  tier: optional
-  scope: [web]
-  triggers: ["码值映射", "枚举映射", "字典映射", "字典接口", "筛选选项来源", "接口契约不一致", "响应信封", "字段形态", "数据展示"]
-  category: dev
-  type: profile
-  requires: []
-  author: fxri
-  source: https://github.com/fxri-net/playbook
+title: 接口契约与数据展示规范
 ---
 
 # 接口契约与数据展示规范
 
-> 本技能版本 0.1.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 技能：`fxri-code-profile-display`　类型：profile　版本：0.1.1
+
+# 接口契约与数据展示规范
+
+> 本技能版本 0.1.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -24,11 +16,11 @@ metadata:
 - 接口契约与界面需求有落差，需要决定由谁改、怎么兜底
 - 运行期响应与生成类型不一致，需要决定以哪边为准
 
-不涉及：设计稿还原（见 `fxri-dev-profile-restore`）、代码组织约定（见 `fxri-dev-profile-web`）。
+不涉及：设计稿还原（见 `fxri-code-profile-restore`）、代码组织约定（见 `fxri-code-profile-web`）。
 
 ## 通用说明
 
-每条规则带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。映射表、字典接口与响应拦截器的具体形态见 [适配表](./references/adapters.md)，示例与反例见 [原则示例](./references/principles.md)。
+每条规则带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。映射表、字典接口与响应拦截器的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-display/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-display/./references/principles.md)。
 
 ## 规则
 

@@ -1,13 +1,13 @@
 {
   "categories": [
-    { "id": "dev", "label": "开发", "description": "前端、后端与工程化实践", "status": "active" },
-    { "id": "office", "label": "办公", "description": "文档、表格与演示产物", "status": "reserved" },
-    { "id": "writing", "label": "写作", "description": "技术写作与内容表达", "status": "active" },
-    { "id": "research", "label": "研究", "description": "检索、分析与报告", "status": "reserved" },
-    { "id": "design", "label": "设计", "description": "界面、交互与视觉规范", "status": "reserved" },
-    { "id": "data", "label": "数据", "description": "数据处理、分析与可视化", "status": "reserved" },
-    { "id": "ops", "label": "运维", "description": "部署、发布与稳定性", "status": "reserved" },
-    { "id": "meta", "label": "元技能", "description": "协作方式、预设与流程编排", "status": "reserved" },
-    { "id": "imported", "label": "导入", "description": "第三方来源中未归类的技能（保留分类）", "status": "reserved" }
+    { "id": "code", "label": "编码", "description": "软件实现、构建与工程化" },
+    { "id": "writing", "label": "写作", "description": "书面表达与知识条目" },
+    { "id": "research", "label": "研究", "description": "检索、分析与评估" },
+    { "id": "design", "label": "设计", "description": "视觉、交互与版式" },
+    { "id": "data", "label": "数据", "description": "数据处理、统计口径与可视化" },
+    { "id": "office", "label": "办公", "description": "表格、日程与事务性工具" },
+    { "id": "ops", "label": "运维", "description": "部署、发布与稳定性" },
+    { "id": "life", "label": "生活", "description": "个人事务与日常安排" },
+    { "id": "meta", "label": "元技能", "description": "技能、规则与协作机制" }
   ]
 }

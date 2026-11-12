@@ -1,13 +1,13 @@
 ---
-name: fxri-dev-profile-web
+name: fxri-code-profile-web
 description: 前端通用规范（与语言、框架、语法无关）：共享工具函数前缀沿用项目已有前缀；注释逐变量简短说明、行内讲为什么、用词统一；函数名按英文首字母排序；识别设计稿时忽略系统状态栏与宿主容器头部；另含大整数标识字符串化、运行期取值下沉、失败提示与加载态、浮层让位、可选链范式、死样式判定、根地址拼接、间距分工、图标来源、前缀同源、第三方 SDK 取值与整页刷新。适用于任何 Node/前端工程；依赖具体组件与工具的做法下沉 references，依赖项缺失时相关条目自动跳过。
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.3.1"
   tier: optional
   scope: [web]
   triggers: ["前端通用规范", "共享工具函数前缀", "逐变量注释", "注释讲为什么", "函数名首字母排序", "效果图识别", "设计稿还原", "大整数精度", "雪花 id", "运行期取值", "加载态复位", "死样式", "根地址拼接", "间距写法", "图标库", "前缀同源"]
-  category: dev
+  category: code
   type: profile
   requires: []
   author: fxri
@@ -16,7 +16,7 @@ metadata:
 
 # 前端通用规范
 
-> 本技能版本 0.3.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.3.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -25,7 +25,7 @@ metadata:
 - 处理数值精度、运行期取值、失败提示、布局让位、可选值访问、死代码判定等跨框架共性写法时
 - 与 Vue / 具体框架无关的通用前端约定
 
-不涉及：格式化、状态三分类、Defines / AxiosParse、SFC 语法与 JSDoc 语法（见 `fxri-dev-profile-vue`）；设计还原的取证口径（见 `fxri-dev-profile-restore`）。
+不涉及：格式化、状态三分类、Defines / AxiosParse、SFC 语法与 JSDoc 语法（见 `fxri-code-profile-vue`）；设计还原的取证口径（见 `fxri-code-profile-restore`）。
 
 ## 通用说明
 

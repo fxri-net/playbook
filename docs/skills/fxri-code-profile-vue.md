@@ -1,22 +1,14 @@
 ---
-name: fxri-dev-profile-vue
-description: Vue 3 前端规范：按项目 .prettierrc 格式化且不硬编码引号/分号/行宽；状态三分类（enums / datas 用 reactive，elems 用普通对象）；Defines + AxiosParse；工具 / 服务文件、SFC 三块与 script setup 内部顺序；固定前置注释、@file 与 JSDoc；组件 ref 片段感知、defineExpose 用 getter、数据源驱动容器须传数据源、表单与状态机写法。适用于编写或评审 Vue 组件、组织脚本结构、按设计稿实现页面；共享工具前缀、逐变量注释、函数排序与效果图识别见 fxri-dev-profile-web。
-license: MIT
-metadata:
-  version: "0.3.0"
-  tier: optional
-  scope: [vue]
-  triggers: ["Vue 规范", "状态三分类", "enums datas elems", "Defines", "AxiosParse", "SFC 顺序", "script setup 顺序", "固定前置注释", "JSDoc", "prettier 格式化", "组件 ref", "defineExpose", "列表容器数据源", "表单状态机"]
-  category: dev
-  type: profile
-  requires: ["fxri-dev-profile-web"]
-  author: fxri
-  source: https://github.com/fxri-net/playbook
+title: Vue 前端规范
 ---
 
 # Vue 前端规范
 
-> 本技能版本 0.3.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 技能：`fxri-code-profile-vue`　类型：profile　版本：0.3.1
+
+# Vue 前端规范
+
+> 本技能版本 0.3.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -25,8 +17,8 @@ metadata:
 - 统一 SFC、工具文件、注释与 JSDoc 的具体写法
 - 处理组件 ref、对外暴露数据、数据源驱动容器与表单状态机
 
-通用规则（共享工具前缀、逐变量注释、行内讲为什么、用词统一、函数名排序、效果图识别）见 `fxri-dev-profile-web`，本技能不重复。
-第 6 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过；组件与工具形态见 [适配表](./references/adapters.md)。
+通用规则（共享工具前缀、逐变量注释、行内讲为什么、用词统一、函数名排序、效果图识别）见 `fxri-code-profile-web`，本技能不重复。
+第 6 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过；组件与工具形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-vue/./references/adapters.md)。
 
 ## 规则
 
@@ -42,7 +34,7 @@ metadata:
 - **datas**：响应式状态数据集合，用 `reactive` 包裹；注释固定为 `/** 数据集合 */`。
 - **elems**：UI 组件引用 + 不应被双向绑定的数据 / 模型，用普通对象（非响应式）；注释固定为 `/** 元素集合 */`。
 - **归属规则**：所有枚举必须放 `enums`（除非放进去会报错）；所有变量必须放 `datas`（除非放进去会报错）；`elems` 主要放 UI 组件引用，以及不应被双向绑定的数据和模型。
-- **注释**：三个集合内每个变量单独简短注释（逐变量注释的通用要求见 `fxri-dev-profile-web`）。
+- **注释**：三个集合内每个变量单独简短注释（逐变量注释的通用要求见 `fxri-code-profile-web`）。
 - **适用条件**：该结构只在业务代码「支持且有」的情况下要求；不支持或没有时不强制生成。
 
 ### 3. Defines + AxiosParse
@@ -53,7 +45,7 @@ metadata:
 
 ### 4. 顺序
 
-- **工具 / 服务文件**：`imports → 类型定义 → 常量 → 函数 → 导出`；函数名按英文首字母排序（排序规则见 `fxri-dev-profile-web`）。
+- **工具 / 服务文件**：`imports → 类型定义 → 常量 → 函数 → 导出`；函数名按英文首字母排序（排序规则见 `fxri-code-profile-web`）。
 - **组件 SFC 三块**：`<script setup lang="ts"> → <template> → <style scoped lang="scss">`。这只是举例：语言为 `js/tsx/jsx` 或无 `scoped` 时不做强制，`template` / `style` 同理；仅当与项目实际写法完全一致时，按项目内的配置项顺序执行。
 - **`<script setup>` 内部**：通用顺序为 `imports → defineOptions → interface Defines → enums → elems → datas → 函数`；不通用时按项目实际情况灵活调整。
 - **固定注释**：`defineOptions` 的注释固定为 `/** 派发选项 */`；`interface Defines` 的注释固定为 `/** 定义集合 */`。
@@ -62,8 +54,8 @@ metadata:
 
 - **`@file`**：文件头已有的 `@file` 不动，新文件不加。
 - **固定前置注释**：`/** 派发选项 */`、`/** 定义集合 */`、`/** 枚举集合 */`、`/** 元素集合 */`、`/** 数据集合 */`。
-- **公共函数 JSDoc**：`/** 描述 @param … @return … @example */`；函数参数按实际顺序；函数名排序按 `fxri-dev-profile-web` 的约定。
-- **行内注释与用词**：讲「为什么」、用词统一等通用要求见 `fxri-dev-profile-web`。
+- **公共函数 JSDoc**：`/** 描述 @param … @return … @example */`；函数参数按实际顺序；函数名排序按 `fxri-code-profile-web` 的约定。
+- **行内注释与用词**：讲「为什么」、用词统一等通用要求见 `fxri-code-profile-web`。
 
 ### 6. 组件 ref 片段感知
 

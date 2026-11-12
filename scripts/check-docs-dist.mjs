@@ -1,4 +1,4 @@
-// 文档站产物校验：标准来源 playbook fxri-docs-profile 0.1.3
+// 文档站产物校验：标准来源 playbook fxri-writing-profile-nav 0.1.4
 // 规则：404 页不进站点地图、不进站内搜索索引；在 docs:build 之后执行，只读 dist 产物，不改文件
 import { existsSync, readFileSync, readdirSync } from "node:fs"
 import { dirname, join, relative } from "node:path"

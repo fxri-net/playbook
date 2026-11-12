@@ -4,11 +4,11 @@ title: 构建与质量规范
 
 # 构建与质量规范
 
-> 技能：`fxri-dev-profile-build`　类型：profile　版本：0.1.0
+> 技能：`fxri-code-profile-build`　类型：profile　版本：0.1.1
 
 # 构建与质量规范
 
-> 本技能版本 0.1.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.1.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -16,11 +16,11 @@ title: 构建与质量规范
 - 调整质量门强度、本地与流水线的判定口径
 - 接口由契约生成，需要确定手工层与生成层的边界
 
-不涉及：代码组织约定（见 `fxri-dev-profile-web`）、接口数据的呈现（见 `fxri-dev-profile-display`）。
+不涉及：代码组织约定（见 `fxri-code-profile-web`）、接口数据的呈现（见 `fxri-code-profile-display`）。
 
 ## 通用说明
 
-每条规则带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。工具钩子、生成器命令与流水线变量见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-dev-profile-build/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-dev-profile-build/./references/principles.md)。
+每条规则带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。工具钩子、生成器命令与流水线变量见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-build/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-build/./references/principles.md)。
 
 ## 规则
 

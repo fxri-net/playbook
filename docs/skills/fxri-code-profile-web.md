@@ -4,11 +4,11 @@ title: 前端通用规范
 
 # 前端通用规范
 
-> 技能：`fxri-dev-profile-web`　类型：profile　版本：0.3.0
+> 技能：`fxri-code-profile-web`　类型：profile　版本：0.3.1
 
 # 前端通用规范
 
-> 本技能版本 0.3.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.3.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -17,11 +17,11 @@ title: 前端通用规范
 - 处理数值精度、运行期取值、失败提示、布局让位、可选值访问、死代码判定等跨框架共性写法时
 - 与 Vue / 具体框架无关的通用前端约定
 
-不涉及：格式化、状态三分类、Defines / AxiosParse、SFC 语法与 JSDoc 语法（见 `fxri-dev-profile-vue`）；设计还原的取证口径（见 `fxri-dev-profile-restore`）。
+不涉及：格式化、状态三分类、Defines / AxiosParse、SFC 语法与 JSDoc 语法（见 `fxri-code-profile-vue`）；设计还原的取证口径（见 `fxri-code-profile-restore`）。
 
 ## 通用说明
 
-第 7 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。组件、图标库、构建工具与 SDK 的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-dev-profile-web/./references/adapters.md)。
+第 7 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。组件、图标库、构建工具与 SDK 的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-web/./references/adapters.md)。
 
 ## 规则
 

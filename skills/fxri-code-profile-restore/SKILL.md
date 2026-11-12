@@ -1,14 +1,22 @@
 ---
-title: 设计还原规范
+name: fxri-code-profile-restore
+description: 按设计稿还原界面的通用规范：设计稿定视觉、接口文档定字段；标注参数直读、位图只作佐证；整图切片用透明热区承载点击；内容文本保可读下限；切片获取与平台可用态判定；固定视口实测与窄窗分层判定。适用于任何按设计稿实现页面的前端工程；组件、设计平台与工具细节下沉 references，依赖项缺失时相关条目自动跳过。
+license: MIT
+metadata:
+  version: "0.1.1"
+  tier: optional
+  scope: [web]
+  triggers: ["设计还原", "设计稿还原", "页面还原", "还原口径", "标注取证", "设计切片", "整图切片", "透明热区", "字号下限", "设计稿素材"]
+  category: code
+  type: profile
+  requires: []
+  author: fxri
+  source: https://github.com/fxri-net/playbook
 ---
 
 # 设计还原规范
 
-> 技能：`fxri-dev-profile-restore`　类型：profile　版本：0.1.0
-
-# 设计还原规范
-
-> 本技能版本 0.1.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.1.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -16,11 +24,11 @@ title: 设计还原规范
 - 设计稿以整图切片交付，需要在图内承载点击
 - 判断设计平台是否可用、从平台取切片、对还原结果做取证
 
-不涉及：接口字段的契约问题（见 `fxri-dev-profile-display`）、代码组织约定（见 `fxri-dev-profile-web`）。
+不涉及：接口字段的契约问题（见 `fxri-code-profile-display`）、代码组织约定（见 `fxri-code-profile-web`）。
 
 ## 通用说明
 
-每条规则都带「适用前提」与「项目无对应物」两段。前提不成立、或项目里没有对应组件与工具时，整条跳过，不要求为满足规则新建替代物。具体组件名、平台名与工具命令见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-dev-profile-restore/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-dev-profile-restore/./references/principles.md)。
+每条规则都带「适用前提」与「项目无对应物」两段。前提不成立、或项目里没有对应组件与工具时，整条跳过，不要求为满足规则新建替代物。具体组件名、平台名与工具命令见 [适配表](./references/adapters.md)，示例与反例见 [原则示例](./references/principles.md)。
 
 ## 规则
 

@@ -45,7 +45,7 @@
 
 `imports → 类型定义 → 常量 → 函数 → 导出`。
 
-函数名按英文首字母排序，示例：`doBase → doData → doDom → doInfo → doOption → doParam → doRoute → doSafe → doSite → doUser`。排序规则见 `fxri-dev-profile-web`。
+函数名按英文首字母排序，示例：`doBase → doData → doDom → doInfo → doOption → doParam → doRoute → doSafe → doSite → doUser`。排序规则见 `fxri-code-profile-web`。
 
 ### 组件 SFC 三块
 
@@ -70,8 +70,8 @@
   - enums → `/** 枚举集合 */`
   - elems → `/** 元素集合 */`
   - datas → `/** 数据集合 */`
-- **公共函数 JSDoc**：`/** 描述 @param … @return … @example */`；参数按实际顺序；函数名排序按 `fxri-dev-profile-web`。
-- 行内注释讲「为什么」、用词统一等通用要求见 `fxri-dev-profile-web`。
+- **公共函数 JSDoc**：`/** 描述 @param … @return … @example */`；参数按实际顺序；函数名排序按 `fxri-code-profile-web`。
+- 行内注释讲「为什么」、用词统一等通用要求见 `fxri-code-profile-web`。
 
 ## 组件 ref 片段感知
 

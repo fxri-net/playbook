@@ -1,27 +1,27 @@
 [
   {
-    "text": "开发",
+    "text": "编码",
     "collapsed": false,
     "items": [
       {
         "text": "构建与质量规范",
-        "link": "/skills/fxri-dev-profile-build/"
+        "link": "/skills/fxri-code-profile-build/"
       },
       {
         "text": "接口契约与数据展示规范",
-        "link": "/skills/fxri-dev-profile-display/"
+        "link": "/skills/fxri-code-profile-display/"
       },
       {
         "text": "设计还原规范",
-        "link": "/skills/fxri-dev-profile-restore/"
+        "link": "/skills/fxri-code-profile-restore/"
       },
       {
         "text": "Vue 前端规范",
-        "link": "/skills/fxri-dev-profile-vue/"
+        "link": "/skills/fxri-code-profile-vue/"
       },
       {
         "text": "前端通用规范",
-        "link": "/skills/fxri-dev-profile-web/"
+        "link": "/skills/fxri-code-profile-web/"
       }
     ]
   },
@@ -31,7 +31,7 @@
     "items": [
       {
         "text": "文档站导航规范",
-        "link": "/skills/fxri-docs-profile/"
+        "link": "/skills/fxri-writing-profile-nav/"
       }
     ]
   }

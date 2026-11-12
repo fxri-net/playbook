@@ -11,9 +11,9 @@ const errors = []
 const fail = (file, message) => errors.push(`${file}: ${message}`)
 
 const REQUIRED_FILES = ["package.json", "README.md", "LICENSE", "NOTICE", "TRADEMARK.md", "SECURITY.md", "CONTRIBUTING.md", "skills.json", "categories.json"]
-const ALLOWED_TYPES = new Set(["bundle", "template", "profile", "preset", "guide"])
-// 新增技能名主题段禁用的领域大词：单个技能不得宣称整个领域
-const DOMAIN_WORDS = new Set(["ui", "data", "web", "app", "frontend", "engineering"])
+const ALLOWED_TYPES = new Set(["profile", "practice", "template"])
+// 主题段的空泛词：不能表达具体能力
+const EMPTY_TOPIC_WORDS = new Set(["tool", "tools", "skill", "skills", "general", "all", "misc"])
 const TYPE_BUDGET = { bundle: 800, template: 3000 }
 const DEFAULT_BUDGET = 8000
 const SEMVER = /^\d+\.\d+\.\d+$/
@@ -161,7 +161,6 @@ for (const category of categories?.categories ?? []) {
   if (typeof category.id !== "string" || !KEBAB.test(category.id)) fail("categories.json", `分类 id 非法：${category.id}`)
   if (typeof category.label !== "string" || category.label.trim() === "") fail("categories.json", `分类 ${category.id} 缺少 label`)
   if (typeof category.description !== "string" || category.description.trim() === "") fail("categories.json", `分类 ${category.id} 缺少 description`)
-  if (category.status !== "active" && category.status !== "reserved") fail("categories.json", `分类 ${category.id} 的 status 须为 active / reserved`)
 }
 
 const skills = manifest?.skills ?? []
@@ -234,6 +233,24 @@ for (const skill of skills) {
   // 敏感信息扫描
   for (const pattern of SENSITIVE) {
     if (pattern.re.test(content)) fail(label, `疑似包含${pattern.label}`)
+  }
+}
+
+// 命名门禁：技能名须为 fxri-<领域>-<形态>-<主题>，主题段不重复领域段与形态段
+for (const skill of skills) {
+  const label = `skills.json#${skill.name}`
+  const segments = skill.name.split("-")
+  if (segments[0] !== "fxri" || segments.length < 4) {
+    fail(label, "技能名须为 fxri-<领域>-<形态>-<主题>")
+    continue
+  }
+  const [domain, shape, ...topic] = segments.slice(1)
+  if (domain !== skill.category) fail(label, `技能名领域段须等于 category：${skill.category}`)
+  if (!ALLOWED_TYPES.has(shape)) fail(label, `技能名形态段非法：${shape}`)
+  else if (shape !== skill.type) fail(label, `技能名形态段须等于 type：${skill.type}`)
+  if (topic.length === 0) fail(label, "技能名缺少主题段")
+  if (topic.some((word) => word === domain || word === shape || EMPTY_TOPIC_WORDS.has(word))) {
+    fail(label, `技能名主题段不得与领域段、形态段重复或使用空泛词：${topic.join("-")}`)
   }
 }
 
@@ -351,22 +368,6 @@ if (!baseline) {
       baselineManifest = JSON.parse(git(["show", `${baseline}:skills.json`]) ?? "")
     } catch {
       // 基准里没有 skills.json（首个提交）时，全部技能按新增处理、豁免版本递增
-    }
-    // 命名门禁：新增技能须为 fxri-<分类>-<类型>-<主题>，主题段不占领域大词；存量旧名豁免
-    if (baselineManifest) {
-      const baselineNames = new Set((baselineManifest.skills ?? []).map((skill) => skill.name))
-      for (const skill of skills) {
-        if (baselineNames.has(skill.name)) continue
-        const segments = skill.name.split("-")
-        if (segments[0] !== "fxri" || segments.length < 4) {
-          fail(`skills.json#${skill.name}`, "新增技能名须为 fxri-<分类>-<类型>-<主题>")
-          continue
-        }
-        if (segments[1] !== skill.category) fail(`skills.json#${skill.name}`, `新增技能名分类段须等于 category：${skill.category}`)
-        if (!ALLOWED_TYPES.has(segments[2])) fail(`skills.json#${skill.name}`, `新增技能名类型段非法：${segments[2]}`)
-        const topic = segments.slice(3)
-        if (topic.some((word) => DOMAIN_WORDS.has(word))) fail(`skills.json#${skill.name}`, `新增技能名主题段不得含领域大词：${topic.join("-")}`)
-      }
     }
     const changedSkills = new Set(changed.map((file) => file.match(/^skills\/([^/]+)\//)?.[1]).filter(Boolean))
     for (const name of changedSkills) {

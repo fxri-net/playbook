@@ -1,13 +1,13 @@
 ---
-name: fxri-dev-profile-build
+name: fxri-code-profile-build
 description: 构建与质量规范：构建告警按来源归属治理、barrel 成员不得回引自身、质量门零告警阻断、接口契约生成优先且生成物不手改。适用于任何需要维护构建产物与质量门的前端工程；构建工具钩子、生成器命令与流水线变量见 references，依赖项缺失时相关条目自动跳过。
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   tier: optional
   scope: [web]
   triggers: ["构建告警", "barrel 循环依赖", "循环 chunk", "质量门", "告警零容忍", "生成物重跑", "接口生成", "契约生成", "构建配置"]
-  category: dev
+  category: code
   type: profile
   requires: []
   author: fxri
@@ -16,7 +16,7 @@ metadata:
 
 # 构建与质量规范
 
-> 本技能版本 0.1.0（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.1.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -24,7 +24,7 @@ metadata:
 - 调整质量门强度、本地与流水线的判定口径
 - 接口由契约生成，需要确定手工层与生成层的边界
 
-不涉及：代码组织约定（见 `fxri-dev-profile-web`）、接口数据的呈现（见 `fxri-dev-profile-display`）。
+不涉及：代码组织约定（见 `fxri-code-profile-web`）、接口数据的呈现（见 `fxri-code-profile-display`）。
 
 ## 通用说明
 
