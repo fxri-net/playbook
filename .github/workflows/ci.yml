@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
   pull_request:
-  # 手动触发：平台丢事件或需重跑时的手动入口；deploy job 的 if 已限定 push，手动触发只跑验收
+  # 手动触发：平台丢事件或需重跑时的手动入口
   workflow_dispatch:
 
 jobs:
-  verify:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -24,31 +24,3 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: node scripts/verify.mjs
-
-  deploy:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: verify
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v6
-        with:
-          version: 10.34.4
-      - uses: actions/setup-node@v5
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm docs:build
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: docs/.vitepress/dist
-      - id: deployment
-        uses: actions/deploy-pages@v5
