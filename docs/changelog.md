@@ -6,6 +6,22 @@ outline: [2, 2]
 
 > 完整变更历史以根 `CHANGELOG.md` 为准，本页由 `toolkit changelog doc` 自动同步，请勿手改。
 
+## 0.5.0
+
+> 2026-11-21 发布
+
+### ⚡ 优化改进
+
+- `fxri-code-profile-display` 的规则标题改用「可读文本」，不再把中文写成通用约束
+
+### 📝 文档更新
+
+- 新增 0.5.0 迁移说明，给出旧名到新名的映射与清理步骤
+
+### 🧹 清理移除
+
+- 移除 `fxri-writing-profile-nav` 技能，文档站写作规范迁至 `@fxri/toolkit` 的 `fxri-docs-writing`
+
 ## 0.4.0
 
 > 2026-11-13 发布
