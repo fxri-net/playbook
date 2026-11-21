@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "name": "playbook",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "skills": [
     {
       "name": "fxri-code-profile-web",
@@ -40,7 +40,7 @@
       "type": "profile",
       "title": "接口契约与数据展示规范",
       "summary": "接口契约与数据展示规范：码值映射可读文本、字典型选项取后端字典来源、契约落差先确认口径、运行期不符契约不自行适配、响应信封以运行时为准。依赖项缺失时相关条目自动跳过。",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "requires": []
     },
     {
@@ -51,16 +51,6 @@
       "title": "构建与质量规范",
       "summary": "构建与质量规范：告警按来源归属治理、barrel 成员不得回引自身、质量门零告警阻断、接口契约生成优先且生成物不手改。依赖项缺失时相关条目自动跳过。",
       "version": "0.1.1",
-      "requires": []
-    },
-    {
-      "name": "fxri-writing-profile-nav",
-      "path": "skills/fxri-writing-profile-nav",
-      "category": "writing",
-      "type": "profile",
-      "title": "文档站导航规范",
-      "summary": "文档站导航规范：分类骨架、分组名最多 4 汉字、顶栏不超过 5 项、常见问题与更新日志归帮助、导航与产物校验由工具命令执行。",
-      "version": "0.2.0",
       "requires": []
     }
   ]

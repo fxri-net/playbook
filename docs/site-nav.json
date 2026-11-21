@@ -76,16 +76,6 @@
       ]
     },
     {
-      "text": "写作",
-      "collapsed": false,
-      "items": [
-        {
-          "text": "文档站导航规范",
-          "link": "/skills/fxri-writing-profile-nav/"
-        }
-      ]
-    },
-    {
       "text": "档案",
       "items": [
         {
@@ -105,6 +95,10 @@
     {
       "text": "升级",
       "items": [
+        {
+          "text": "0.5.0 迁移",
+          "link": "/migrations/0.5.0"
+        },
         {
           "text": "0.4.0 迁移",
           "link": "/migrations/0.4.0"

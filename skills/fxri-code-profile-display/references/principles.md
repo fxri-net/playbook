@@ -2,7 +2,7 @@
 
 > 配合 `SKILL.md` 使用。每条先给正例，再给反例与后果。
 
-## 1. 码值映射中文再展示
+## 1. 码值映射可读文本再展示
 
 - 正例：接口给 `spaceLevel: "COUNTRY"`，页面映射表写 `{ COUNTRY: "国家级", PROVINCE: "省级", CITY: "市级" }`，取值写 `映射表[值] ?? 值?.name ?? ""`。
 - 反例：页面直接渲染 `spaceLevel`，用户看到 `COUNTRY`；未知码值时不兜底，界面出现 `undefined`。

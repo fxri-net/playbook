@@ -106,6 +106,7 @@ const SIDEBAR_TAIL = [
   {
     text: "升级",
     items: [
+      { text: "0.5.0 迁移", link: "/migrations/0.5.0" },
       { text: "0.4.0 迁移", link: "/migrations/0.4.0" },
       { text: "0.3.0 迁移", link: "/migrations/0.3.0" },
     ],
