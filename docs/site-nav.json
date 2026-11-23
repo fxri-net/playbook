@@ -58,6 +58,10 @@
           "link": "/skills/fxri-code-profile-build/"
         },
         {
+          "text": "编码核心规范",
+          "link": "/skills/fxri-code-profile-core/"
+        },
+        {
           "text": "接口契约与数据展示规范",
           "link": "/skills/fxri-code-profile-display/"
         },
