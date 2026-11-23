@@ -4,11 +4,11 @@ title: 前端通用规范
 
 # 前端通用规范
 
-> 技能：`fxri-code-profile-web`　类型：profile　版本：0.3.2
+> 技能：`fxri-code-profile-web`　类型：profile　版本：0.3.3
 
 # 前端通用规范
 
-> 本技能版本 0.3.2（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.3.3（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -21,7 +21,7 @@ title: 前端通用规范
 
 ## 规则
 
-第 7 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。组件、图标库、构建工具与 SDK 的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-web/./references/adapters.md)。
+部分条目带「适用前提」与「项目无对应物」两段（第 16、18、19 条），前提不成立即整条跳过。组件、图标库、构建工具与 SDK 的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-web/./references/adapters.md)。
 
 ### 1. 共享工具函数前缀
 

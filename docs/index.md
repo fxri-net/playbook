@@ -32,8 +32,8 @@ features:
     title: 分类可扩展
     details: categories.json 维护分类字典，新增语言或框架按分类落位，不挤进通用档案。
   - icon: 🔗
-    title: 与 CLI 同源
-    details: 技能可独立使用，也可由 @fxri/toolkit 一键分发；真源随包分发，与 CLI 同一发布批次。
+    title: 可一键分发
+    details: 技能可独立使用，也可作为外部来源交给 @fxri/toolkit 分发；真源在本仓 skills/，按版本标签取用。
 ---
 
 ## 30 秒上手
