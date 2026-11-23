@@ -2,13 +2,13 @@
 
 ## 安装
 
-推荐用 `@fxri/toolkit` 从本仓安装（技能随包分发，不需要额外供应链）：
+推荐用 `@fxri/toolkit`（`>=2.0.0`）从本仓安装（技能随包分发，不需要额外供应链）：
 
 ```bash
-# 临时来源：副本写入，只写本次
+# 临时来源：只写本次；全局面默认软链，项目面写副本与薄壳
 toolkit skill install --source ./playbook --agent canonical
 
-# 永久来源：登记到 ~/.toolkitrc.json，默认软链，失败降级副本
+# 永久来源：登记到 ~/.toolkitrc.json，全局面默认软链（失败降级副本）
 toolkit skill install --source ./playbook --save playbook --agent canonical
 ```
 

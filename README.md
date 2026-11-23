@@ -42,13 +42,13 @@
 
 ## 📦 安装
 
-技能可作为外部来源交给 `@fxri/toolkit` 安装（临时或永久）：
+技能可作为外部来源交给 `@fxri/toolkit`（`>=2.0.0`）安装（临时或永久）：
 
 ```bash
-# 临时来源：副本写入，只写本次
+# 临时来源：只写本次；全局面默认软链，项目面写副本与薄壳
 toolkit skill install --source ./playbook --agent canonical
 
-# 永久来源：登记到 ~/.toolkitrc.json，默认软链，失败降级副本
+# 永久来源：登记到 ~/.toolkitrc.json，全局面默认软链（失败降级副本）
 toolkit skill install --source ./playbook --save playbook --agent canonical
 
 toolkit skill source            # 查看来源与技能

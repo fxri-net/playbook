@@ -38,7 +38,7 @@ features:
 
 ## 30 秒上手
 
-装好 toolkit 后把技能分发到各 agent 的全局技能目录，之后在会话里按场景触发即可：
+装好 toolkit 后把技能分发到当前项目或各 agent 目录（默认按现场判定作用域），之后在会话里按场景触发即可：
 
 ```bash
 pnpm add -g @fxri/toolkit
