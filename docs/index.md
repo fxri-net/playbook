@@ -42,7 +42,7 @@ features:
 
 ```bash
 pnpm add -g @fxri/toolkit
-toolkit skills install
+toolkit skill install
 ```
 
 只想先看内容，可以直接浏览[技能目录](./catalog)。

@@ -6,7 +6,7 @@
 
 ## 为什么有些技能没装？
 
-安装按 `tier` 与显式选择执行：`optional` 技能需要交互选中、`--all` 或 `--skills` 指定。先用 `toolkit skills status` 查看「未选择但已安装」与「缺失」的区别。
+安装按 `tier` 与显式选择执行：`optional` 技能需要交互选中、`--all` 或 `--skills` 指定。先用 `toolkit skill status` 查看「未选择但已安装」与「缺失」的区别。
 
 ## `requires` 会自动安装吗？
 

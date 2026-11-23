@@ -46,13 +46,13 @@
 
 ```bash
 # 临时来源：副本写入，只写本次
-toolkit skills install --from ./playbook --agent canonical
+toolkit skill install --source ./playbook --agent canonical
 
 # 永久来源：登记到 ~/.toolkitrc.json，默认软链，失败降级副本
-toolkit skills install --from ./playbook --save playbook --agent canonical
+toolkit skill install --source ./playbook --save playbook --agent canonical
 
-toolkit skills sources            # 查看来源与技能
-toolkit skills sources remove playbook --prune
+toolkit skill source            # 查看来源与技能
+toolkit skill source remove playbook --prune
 ```
 
 也可用上游安装器：

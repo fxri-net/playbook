@@ -23,7 +23,7 @@ Profile 是各实践领域的规范与流程，按通用层、框架层与场景
 `requires` 会自动补全：选择 Vue profile 时会一并安装 Web profile。
 
 ```bash
-toolkit skills install --from ./playbook --skills fxri-code-profile-vue --agent canonical
+toolkit skill install --source ./playbook --skills fxri-code-profile-vue --agent canonical
 ```
 
 后续按需要在 `skills/` 中补充其他领域的档案。

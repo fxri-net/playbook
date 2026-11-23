@@ -1,4 +1,4 @@
-// 版本同步：changelog version 只改 package.json，这里把版本回写到技能清单
+// 版本同步：release bump 只改 package.json，这里把版本回写到技能清单
 // 只替换清单首个 version 字段（顶层版本），不重排缩进与内联数组，避免顺带改动格式
 import { readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"

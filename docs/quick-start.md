@@ -6,10 +6,10 @@
 
 ```bash
 # 临时来源：副本写入，只写本次
-toolkit skills install --from ./playbook --agent canonical
+toolkit skill install --source ./playbook --agent canonical
 
 # 永久来源：登记到 ~/.toolkitrc.json，默认软链，失败降级副本
-toolkit skills install --from ./playbook --save playbook --agent canonical
+toolkit skill install --source ./playbook --save playbook --agent canonical
 ```
 
 也可以用上游安装器：
@@ -28,15 +28,15 @@ pnpm dlx skills add fxri-net/playbook --global
 只想装某个 profile：
 
 ```bash
-toolkit skills install --from ./playbook --skills fxri-code-profile-web --agent canonical
+toolkit skill install --source ./playbook --skills fxri-code-profile-web --agent canonical
 ```
 
 ## 更新与清理
 
 ```bash
-toolkit skills status                     # 查看现场
-toolkit skills install --from ./playbook --agent canonical   # 刷新
-toolkit skills sources remove playbook --prune               # 注销并清理
+toolkit skill status                                          # 查看现场
+toolkit skill install --source ./playbook --agent canonical   # 刷新
+toolkit skill source remove playbook --prune                  # 注销并清理
 ```
 
 ## 直接用文件

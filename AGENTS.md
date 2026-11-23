@@ -6,7 +6,7 @@
 
 ## 能力变更三方真实一致（强制质量门）
 
-任何影响对外行为的变更——新增 / 修改 / 删除技能、技能正文与 references、manifest 字段、文档站手写页、生成脚本——在任务归档前必须完成三方复核，与 `toolkit tasks check` 同为不可绕过的质量门：
+任何影响对外行为的变更——新增 / 修改 / 删除技能、技能正文与 references、manifest 字段、文档站手写页、生成脚本——在任务归档前必须完成三方复核，与 `toolkit task check` 同为不可绕过的质量门：
 
 1. **能力自身**：`skills.json` ↔ `SKILL.md` frontmatter ↔ `references/` 实际内容一致；`package.json` 与 `skills.json` 的 `version` 一致；`node scripts/validate.mjs` 通过。
 2. **文档**：`docs/` 手写页与根 `README.md` 逐篇过触达面；`docs/changelog.md`、`docs/catalog.md`、`docs/skills/*.md`、`docs/site-nav.json` 为生成物，只核对镜像结果与源一致，不手改。手写文档中出现的 `fxri-*` 技能标识必须在 `skills.json` 登记。
@@ -17,7 +17,7 @@
 ## 验收方式
 
 - 跑 `node scripts/verify.mjs`——本地与两处 CI 共用的单一步骤清单（结构校验 → CHANGELOG 镜像一致 → 文档站构建）；
-- `toolkit tasks check` 的 error 与 warn 均为 0；
+- `toolkit task check` 的 error 与 warn 均为 0；
 - 复核发现遗漏必须当场回补，不允许「下次再说」。
 
 ## 协作流程约束
