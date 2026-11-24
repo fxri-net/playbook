@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "name": "playbook",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "skills": [
     {
       "name": "fxri-code-profile-core",
