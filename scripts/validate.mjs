@@ -34,8 +34,8 @@ function git(args) {
   }
 }
 
-// 变更基准：显式 ref > GitHub 事件载荷 > GitLab MR diff 基准 > 目标分支 merge-base > 变更前提交 > 本地 HEAD~1；
-// 均不可得时返回 null，由调用方打印「跳过（无 git 基准）」而非静默放行
+// 变更基准：显式 ref > GitHub 事件载荷 > GitLab MR diff 基准 > 目标分支 merge-base > 变更前提交 >
+// 本地上游分叉点 > HEAD~1；均不可得时返回 null，由调用方打印「跳过（无 git 基准）」而非静默放行
 function resolveBaseline() {
   const explicit = process.env.CHANGESET_BASE_REF
   if (explicit) return git(["merge-base", explicit, "HEAD"]) ?? git(["rev-parse", explicit])
@@ -63,6 +63,12 @@ function resolveBaseline() {
   }
   const before = process.env.CI_COMMIT_BEFORE_SHA
   if (before && !/^0+$/.test(before) && git(["cat-file", "-e", `${before}^{commit}`]) !== null) return before
+  // 本地提交后复跑验收：上游分叉点覆盖未推送的整批提交，HEAD~1 只看到最后一条会把先前的变更集判成缺失
+  const upstream = git(["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}"])
+  if (upstream) {
+    const merged = git(["merge-base", upstream, "HEAD"])
+    if (merged) return merged
+  }
   return git(["rev-parse", "HEAD~1"])
 }
 
