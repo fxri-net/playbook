@@ -11,7 +11,7 @@ Profile 是各实践领域的规范与流程，按通用层、框架层与场景
 | `fxri-code-profile-vue` | Vue 3：格式化、状态三分类、Defines + AxiosParse、SFC 顺序、注释语法，以及 ref 片段感知、getter 暴露、数据源容器与表单状态机 | `fxri-code-profile-web` |
 | `fxri-code-profile-restore` | 按设计稿还原：素材与字段口径、标注直读、整图热区、可读下限、切片获取与可用态判定 | 无 |
 | `fxri-code-profile-display` | 接口契约与数据展示：码值映射、字典来源、契约落差确认、信封以运行时为准 | 无 |
-| `fxri-code-profile-build` | 构建与质量：告警分源治理、barrel 断边、质量门零告警、契约生成优先 | 无 |
+| `fxri-code-profile-build` | 构建与质量：告警分源治理、barrel 断边、质量门零告警、改动面裁剪、契约生成优先 | 无 |
 
 ## 写作档案
 

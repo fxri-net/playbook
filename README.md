@@ -22,7 +22,7 @@
 | Vue 3 规范 | 格式化、状态三分类、Defines、SFC 顺序与注释语法，以及 ref 片段感知、getter 暴露、数据源容器与表单状态机；`requires` 通用规范 | [`fxri-code-profile-vue`](./skills/fxri-code-profile-vue/SKILL.md) |
 | 设计还原规范 | 素材分工与字段口径、标注直读、整图切片热区、内容文本可读下限、切片获取与可用态判定 | [`fxri-code-profile-restore`](./skills/fxri-code-profile-restore/SKILL.md) |
 | 接口契约与数据展示规范 | 码值映射可读文本、字典选项来源、契约落差确认、响应信封以运行时为准 | [`fxri-code-profile-display`](./skills/fxri-code-profile-display/SKILL.md) |
-| 构建与质量规范 | 告警分源治理、barrel 断边、质量门零告警、契约生成优先 | [`fxri-code-profile-build`](./skills/fxri-code-profile-build/SKILL.md) |
+| 构建与质量规范 | 告警分源治理、barrel 断边、质量门零告警、改动面裁剪、契约生成优先 | [`fxri-code-profile-build`](./skills/fxri-code-profile-build/SKILL.md) |
 | 技能目录 | 按分类浏览全部技能与预留状态 | [`catalog.md`](./catalog.md) |
 | 结构门禁 | 结构、命名、体积、技能标识、版本递增与变更集校验 | `pnpm verify` |
 
