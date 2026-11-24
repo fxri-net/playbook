@@ -35,10 +35,14 @@ function git(args) {
 }
 
 // 变更基准：显式 ref > GitHub 事件载荷 > GitLab MR diff 基准 > 目标分支 merge-base > 变更前提交 >
-// 本地上游分叉点 > HEAD~1；均不可得时返回 null，由调用方打印「跳过（无 git 基准）」而非静默放行
+// 本地上游分叉点 > HEAD~1；均不可得时返回 null，由调用方打印「跳过（无 git 基准）」而非静默放行。
+// 返回值带来源，失败信息据此提示该显式指定基准还是补变更集
 function resolveBaseline() {
   const explicit = process.env.CHANGESET_BASE_REF
-  if (explicit) return git(["merge-base", explicit, "HEAD"]) ?? git(["rev-parse", explicit])
+  if (explicit) {
+    const resolved = git(["merge-base", explicit, "HEAD"]) ?? git(["rev-parse", explicit])
+    return resolved ? { ref: resolved, source: "显式 CHANGESET_BASE_REF" } : null
+  }
   // GitHub PR / push 的精确基准在事件载荷里（checkout 需 fetch-depth: 0 才能命中提交）
   const eventPath = process.env.GITHUB_EVENT_PATH
   if (eventPath && existsSync(eventPath)) {
@@ -46,30 +50,31 @@ function resolveBaseline() {
       const event = JSON.parse(readFileSync(eventPath, "utf8"))
       const before = event?.before
       const sha = event?.pull_request?.base?.sha || (before && !/^0+$/.test(before) ? before : "")
-      if (sha && git(["cat-file", "-e", `${sha}^{commit}`]) !== null) return sha
+      if (sha && git(["cat-file", "-e", `${sha}^{commit}`]) !== null) return { ref: sha, source: "CI 事件载荷" }
     } catch {
       // 事件载荷不可读时继续走其余基准
     }
   }
   const mrBase = process.env.CI_MERGE_REQUEST_DIFF_BASE_SHA
-  if (mrBase && git(["cat-file", "-e", `${mrBase}^{commit}`]) !== null) return mrBase
+  if (mrBase && git(["cat-file", "-e", `${mrBase}^{commit}`]) !== null) return { ref: mrBase, source: "GitLab MR 基准" }
   // 目标分支 merge-base：优先远端跟踪分支，其次同名本地分支
   const baseRef = process.env.GITHUB_BASE_REF || process.env.CI_MERGE_REQUEST_TARGET_BRANCH_NAME
   if (baseRef) {
     for (const ref of [`origin/${baseRef}`, baseRef]) {
       const merged = git(["merge-base", ref, "HEAD"])
-      if (merged) return merged
+      if (merged) return { ref: merged, source: "CI 目标分支" }
     }
   }
   const before = process.env.CI_COMMIT_BEFORE_SHA
-  if (before && !/^0+$/.test(before) && git(["cat-file", "-e", `${before}^{commit}`]) !== null) return before
+  if (before && !/^0+$/.test(before) && git(["cat-file", "-e", `${before}^{commit}`]) !== null) return { ref: before, source: "CI 变更前提交" }
   // 本地提交后复跑验收：上游分叉点覆盖未推送的整批提交，HEAD~1 只看到最后一条会把先前的变更集判成缺失
   const upstream = git(["rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{upstream}"])
   if (upstream) {
     const merged = git(["merge-base", upstream, "HEAD"])
-    if (merged) return merged
+    if (merged) return { ref: merged, source: "本地上游分叉点" }
   }
-  return git(["rev-parse", "HEAD~1"])
+  const fallback = git(["rev-parse", "HEAD~1"])
+  return fallback ? { ref: fallback, source: "本地 HEAD~1" } : null
 }
 
 // 语义化版本比较：a 是否高于 b
@@ -391,10 +396,11 @@ for (const file of handwrittenDocs) {
 }
 
 // 变更门禁：技能内容变更须升版本；触及技能 / 手写文档 / 清单 / 生成脚本须新增变更集
-const baseline = resolveBaseline()
-if (!baseline) {
+const baselineInfo = resolveBaseline()
+if (!baselineInfo) {
   console.log("变更集与技能版本校验：跳过（无 git 基准）")
 } else {
+  const baseline = baselineInfo.ref
   const changed = (git(["diff", "--name-only", baseline]) ?? "")
     .split("\n")
     .filter(Boolean)
@@ -444,7 +450,8 @@ if (!baseline) {
         .map((file) => file.trim())
         .filter((file) => file.endsWith(".md") && file.split("/").pop() !== "README.md")
       if (addedInRange.length === 0 && !currentFiles.some((name) => !baselineFiles.has(name))) {
-        fail(".changeset", "本次改动触及技能 / 手写文档 / 清单 / 生成脚本，须新增变更集")
+        const hint = baselineInfo.source === "本地 HEAD~1" ? "；批次跨多条提交时请设置 CHANGESET_BASE_REF=<变更前提交>" : ""
+        fail(".changeset", `本次改动触及技能 / 手写文档 / 清单 / 生成脚本，须新增变更集（基准 ${baseline.slice(0, 7)}，${baselineInfo.source}${hint}）`)
       }
     }
   }
