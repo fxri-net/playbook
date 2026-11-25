@@ -4,11 +4,11 @@ title: 设计还原规范
 
 # 设计还原规范
 
-> 技能：`fxri-code-profile-restore`　类型：profile　版本：0.1.1
+> 技能：`fxri-code-profile-restore`　类型：profile　版本：0.1.2
 
 # 设计还原规范
 
-> 本技能版本 0.1.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.1.2（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -20,7 +20,7 @@ title: 设计还原规范
 
 ## 通用说明
 
-每条规则都带「适用前提」与「项目无对应物」两段。前提不成立、或项目里没有对应组件与工具时，整条跳过，不要求为满足规则新建替代物。具体组件名、平台名与工具命令见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-restore/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-restore/./references/principles.md)。
+多数规则标注「适用前提」与「项目无对应物」两段，前提不成立、或项目里没有对应组件与工具时整条跳过，未标注者为通用要求；不要求为满足规则新建替代物。具体组件名、平台名与工具命令见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-restore/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-restore/./references/principles.md)。
 
 ## 规则
 

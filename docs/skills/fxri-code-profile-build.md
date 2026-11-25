@@ -4,11 +4,11 @@ title: 构建与质量规范
 
 # 构建与质量规范
 
-> 技能：`fxri-code-profile-build`　类型：profile　版本：0.2.1
+> 技能：`fxri-code-profile-build`　类型：profile　版本：0.2.2
 
 # 构建与质量规范
 
-> 本技能版本 0.2.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.2.2（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -20,7 +20,7 @@ title: 构建与质量规范
 
 ## 通用说明
 
-每条规则带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。工具钩子、生成器命令与流水线变量见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-build/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-build/./references/principles.md)。
+多数规则带「适用前提」与「项目无对应物」两段（第 3 条只标适用前提），前提不成立即整条跳过；未标注者为通用要求。工具钩子、生成器命令与流水线变量见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-build/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-build/./references/principles.md)。
 
 ## 规则
 

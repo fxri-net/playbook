@@ -11,6 +11,7 @@ const isWindows = process.platform === "win32"
 // 步骤清单：顺序有依赖（校验先于构建），任一步失败即中止
 const steps = [
   { label: "结构校验（含敏感扫描与 catalog 一致性）", command: process.execPath, args: ["scripts/validate.mjs"] },
+  { label: "变更集规范（.changeset）", command: process.execPath, args: ["scripts/check-changeset.mjs"] },
   { label: "CHANGELOG 镜像一致（toolkit release mirror --check）", command: process.execPath, args: ["scripts/check-changelog-doc.mjs"] },
   { label: "文档站主题一致（toolkit docs theme check）", command: process.execPath, args: ["scripts/toolkit.mjs", "docs", "theme", "check"] },
   { label: "文档站导航规范（分类 / 命名 / 顶栏）", command: process.execPath, args: ["scripts/toolkit.mjs", "docs", "nav", "check"] },

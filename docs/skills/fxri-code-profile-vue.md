@@ -4,11 +4,11 @@ title: Vue 前端规范
 
 # Vue 前端规范
 
-> 技能：`fxri-code-profile-vue`　类型：profile　版本：0.3.1
+> 技能：`fxri-code-profile-vue`　类型：profile　版本：0.3.2
 
 # Vue 前端规范
 
-> 本技能版本 0.3.1（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.3.2（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -18,7 +18,7 @@ title: Vue 前端规范
 - 处理组件 ref、对外暴露数据、数据源驱动容器与表单状态机
 
 通用规则（共享工具前缀、逐变量注释、行内讲为什么、用词统一、函数名排序、效果图识别）见 `fxri-code-profile-web`，本技能不重复。
-第 6 条起每条带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过；组件与工具形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-vue/./references/adapters.md)。
+第 6 条起部分规则标注「适用前提」与「项目无对应物」两段（如第 6、8 条），前提不成立即整条跳过，未标注者为通用要求；组件与工具形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-vue/./references/adapters.md)。
 
 ## 规则
 
@@ -95,4 +95,4 @@ title: Vue 前端规范
 - [ ] 数据源驱动容器已显式传数据源
 - [ ] 表单字段对齐提交契约，状态机单变量驱动
 
-详细示例与反例见 `references/vue-principles.md`，组件与工具形态见 `references/adapters.md`。
+详细示例与反例见 [Vue 原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-vue/./references/vue-principles.md)，组件与工具形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-vue/./references/adapters.md)。

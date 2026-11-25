@@ -4,11 +4,11 @@ title: 接口契约与数据展示规范
 
 # 接口契约与数据展示规范
 
-> 技能：`fxri-code-profile-display`　类型：profile　版本：0.1.2
+> 技能：`fxri-code-profile-display`　类型：profile　版本：0.1.3
 
 # 接口契约与数据展示规范
 
-> 本技能版本 0.1.2（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
+> 本技能版本 0.1.3（随 playbook 技能集分发）。被问版本时即报此值；与磁盘版本不一致即说明会话上下文已过期。
 
 ## 何时使用
 
@@ -20,7 +20,7 @@ title: 接口契约与数据展示规范
 
 ## 通用说明
 
-每条规则带「适用前提」与「项目无对应物」两段，前提不成立即整条跳过。映射表、字典接口与响应拦截器的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-display/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-display/./references/principles.md)。
+部分规则带「适用前提」与「项目无对应物」两段（第 1、4 条两段齐全，第 5 条只标适用前提），前提不成立即整条跳过；未标注者为通用要求。映射表、字典接口与响应拦截器的具体形态见 [适配表](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-display/./references/adapters.md)，示例与反例见 [原则示例](https://github.com/fxri-net/playbook/blob/main/skills/fxri-code-profile-display/./references/principles.md)。
 
 ## 规则
 
