@@ -1,5 +1,21 @@
 # 方弦实践集
 
+## 0.5.3
+
+> 2026-11-27 发布
+
+### ✨ 新增功能
+
+- `fxri-code-profile-core` 增补「极简入口与批量有界」原则：对外尽量收敛主入口，交互时通常多选且默认不全选，脚本场景再显式全量；技能版本 0.1.0 → 0.1.2
+- `scripts/check-changeset.mjs` 并接入 `pnpm verify`，校验变更集文件名、包名键与条目前缀
+
+### 🔧 功能调整
+
+- playbook 的版本级别口径改为指向 `@fxri/toolkit` 的 `fxri-release-changelog` 技能，未加载时按 patch 兜底；删除「新增能力 +minor」
+- build / display / restore / vue 的「每条规则都带两段」改为如实表述（多数标注、未标注为通用要求），不再承诺所有规则都有适用前提与项目无对应物
+- vue 的两处 references 反引号路径改为 markdown 链接，纳入链接校验范围
+- web 的 triggers 去掉「设计稿还原」，该触发词归于 fxri-code-profile-restore
+
 ## 0.5.2
 
 > 2026-11-25 发布
